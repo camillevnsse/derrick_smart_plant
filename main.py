@@ -13,5 +13,10 @@ def settings():
     return render_template("settings.html")
 
 
+@app.route("/statistiques")
+def statistiques():
+    return render_template("statistiques.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
