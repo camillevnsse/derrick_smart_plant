@@ -16,7 +16,7 @@
 
         <script>
               async function goPython () {
-              const resp = await fetch(`${document.location.protocol }//${document.location.host}/test_twilio.py`);
+              const resp = await fetch(`${document.location.protocol }//${document.location.host}/notification`);
               if (!resp.ok) throw "Request error";
                 console.log("finished python script");
               }
