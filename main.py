@@ -16,9 +16,19 @@ def settings():
     return render_template("settings.html")
 
 
-@app.route("/statistiques")
-def statistiques():
-    return render_template("statistiques.html")
+@app.route("/statistics")
+def statistics():
+    data = [
+        ("1", 63),
+        ("2", 47),
+        ("3", 95),
+        ("4", 48),
+        ("5", 39)
+    ]
+
+    labels = [row[0] for row in data]
+    values = [row[1] for row in data]
+    return render_template("statistics.html", labels=labels, values=values)
 
 
 from notification import NotificationApi
