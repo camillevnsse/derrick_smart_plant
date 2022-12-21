@@ -23,11 +23,13 @@
                         <li>
                             <a href="{{url_for('statistics')}}">statistiques</a>
                         </li>
+                        <li>
+                            <a href="{{url_for('get_weather')}}">météo</a>
+                        </li>
                     </ul>
                 </nav></strong>
             </div>
         </header>
-
         {% block content%}
         {% endblock %}
     </body>
