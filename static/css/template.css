@@ -1,3 +1,9 @@
-.navigation {
-    background-color : #a6ffb0;
+body {
+background-color : #6d9dfc;
+color: white
+}
+
+#dp_illustration {
+    float:right;
+    margin: 0 0 15 15px
 }
