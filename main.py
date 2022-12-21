@@ -1,13 +1,17 @@
-import json, requests
+import json
 from flask import Flask, render_template, request
 from notification import NotificationApi
+import db_test
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    dt = db_test.result
+    hum = dt[0][0]
+    temp = dt[0][1]
+    return render_template("home.html", hum=hum, temp=temp)
 
 
 @app.route("/settings")
@@ -17,17 +21,14 @@ def settings():
 
 @app.route("/statistics")
 def statistics():
-    data = [
-        ("1", 63),
-        ("2", 47),
-        ("3", 95),
-        ("4", 48),
-        ("5", 39)
-    ]
+    dt = db_test.result
+    labels = [i for i in range(len(dt))]
+    hum_values = [j[0] for j in dt]
+    temp_values = [k[1] for k in dt]
+    water_lvl_values = [l[2] for l in dt]
+    healthy_values = [m[3] for m in dt]
 
-    labels = [row[0] for row in data]
-    values = [row[1] for row in data]
-    return render_template("statistics.html", labels=labels, values=values)
+    return render_template("statistics.html", labels=labels, hum_values=hum_values, temp_values=temp_values, water_lvl_values=water_lvl_values, healthy_values=healthy_values)
 
 
 @app.route("/city", methods=("GET", "POST"))
