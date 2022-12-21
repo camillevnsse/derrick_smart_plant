@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <title>paramètres</title>
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     </head>
     <body>
         {% extends "template.html" %}
@@ -12,7 +13,7 @@
         <p>intensité de la luminosité : 37% </p>
         <p>délai d'envoi de données : 10 minutes</p>
 
-        <input type="button" id='script' name="scriptbutton" value=" Run Script " onclick="goPython()">
+        <input type="button" id='script' name="scriptbutton" value=" Send Notification " onclick="goPython()">
 
         <script>
               async function goPython () {
