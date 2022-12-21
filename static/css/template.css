@@ -1,5 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
+.menu li {
+    display: inline-block;
+    text-align: center;
+}
+
+.navigation {
+    float:left;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.menu a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
 #dp_illustration {
     float:right;
     margin: 0 0 15 15px
