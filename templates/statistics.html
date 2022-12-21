@@ -11,22 +11,20 @@
         {% extends "template.html" %}
         {% block content %}
         <h1>statistiques</h1>
-        <p>humidité de sol en fonction du temps </p>
-        <p>température en fonction du temps</p>
 
-        <canvas id="statsChart" width="550" height="300"></canvas>
+        <canvas id="humChart" width="550" height="300"></canvas>
         <script>
-            var ctx = document.getElementById("statsChart").getContext("2d");
-            var statsChart = new Chart(ctx, {
+            var ctx = document.getElementById("humChart").getContext("2d");
+            var humChart = new Chart(ctx, {
                 type: "line",
                 data: {
                     labels: {{ labels | safe }},
                     datasets: [
                         {
                             label: "humidité",
-                            data: {{ values | safe }},
+                            data: {{ hum_values | safe }},
                             fill: false,
-                            borderColor: "rgb(51, 92, 255)",
+                            borderColor: "rgb(255, 255, 255)",
                             lineTension: 0.1
                         }
                     ]
@@ -36,6 +34,54 @@
                 }
             });
         </script>
+
+        <canvas id="tempChart" width="550" height="300"></canvas>
+        <script>
+            var ctx = document.getElementById("tempChart").getContext("2d");
+            var tempChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: {{ labels | safe }},
+                    datasets: [
+                        {
+                            label: "température",
+                            data: {{ temp_values | safe }},
+                            fill: false,
+                            backgroundColor: "rgb(255, 255, 255)",
+                            lineTension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: false
+                }
+            });
+        </script>
+
+        <canvas id="levelChart" width="550" height="300"></canvas>
+        <script>
+            var ctx = document.getElementById("levelChart").getContext("2d");
+            var levelChart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: {{ labels | safe }},
+                    datasets: [
+                        {
+                            label: "niveau de l'eau",
+                            data: {{ water_lvl_values | safe }},
+                            fill: false,
+                            borderColor: "rgb(255, 255, 255)",
+                            lineTension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: false
+                }
+            });
+        </script>
+
+        <canvas id="healthChart" width="550" height="300"></canvas>
 
         {% endblock %}
     </body>
