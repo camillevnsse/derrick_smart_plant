@@ -4,13 +4,16 @@
     <head>
         <meta charset="utf-8">
         <title>accueil</title>
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
     </head>
     <body>
         {% extends "template.html" %}
         {% block content %}
+        <img id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">
         <h1>Bienvenue</h1>
         <p>Le niveau d'humidité est à 67%. Votre plante est en bonne santé.</p>
-
+        <p>La température ambiante est de 18°C. </p>
         {% endblock %}
     </body>
 </html>
