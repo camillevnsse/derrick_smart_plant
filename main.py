@@ -1,6 +1,7 @@
 import json
 from flask import Flask, render_template, request
 from notification import NotificationApi
+from watering import WateringApi
 import db_test
 
 app = Flask(__name__)
@@ -57,6 +58,12 @@ def get_weather():
 @app.route("/notification")
 def test_notif():
     NotificationApi.test_notification()
+    return json.dumps({"status": 200, "notification_status": "correct"})
+
+
+@app.route("/watering")
+def watering():
+    WateringApi.water()
     return json.dumps({"status": 200, "notification_status": "correct"})
 
 
