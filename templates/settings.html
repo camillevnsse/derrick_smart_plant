@@ -4,15 +4,30 @@
     <head>
         <meta charset="utf-8">
         <title>paramètres</title>
+        
         <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
     </head>
     <body>
         {% extends "template.html" %}
         {% block content %}
-        <img id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">
-        <h1>Paramètres</h1>
-        <p>intensité de la luminosité : 37% </p>
-        <p>délai d'envoi de données : 10 minutes</p>
+        <div class="pt-16 font-bold text-5xl">Paramètres</div>
+
+        <img class =" xl:float-right pt-36 bg-transparent drop-shadow-xl" id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">
+        <div class=" grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-2">
+            <div class =  " py-5 px-5 col-auto bg-orange-400/50 rounded-md drop-shadow-2xl text-center">Intensité de la luminosité :<span class="font-extrabold decoration-red-600 " > 37%</span></span></div>
+
+        <div class =  "col-auto bg-orange-400/50 rounded-md drop-shadow-2xl text-center">
+            <div class="col-2 py-5 font-semibold:"> Intensité seuil : 
+            
+    
+            <input class=" px-5 rounded-lg overflow-hidden appearance-none bg-yellow-400 h-3 w-100"  type="range" value="seuil" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
+            <output>seuil</output>
+            
+        </div>
+    </div>
+
+        <p>Délai d'envoi de données : <input type="number"> minutes</p>
 
         <input type="button" id='script' name="scriptbutton" value=" Send Notification " onclick="goPython()">
 
