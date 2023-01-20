@@ -5,81 +5,39 @@
         <meta charset="utf-8">
         <title>statistiques</title>
         <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     </head>
     <body>
         {% extends "template.html" %}
         {% block content %}
-        <h1>statistiques</h1>
+        <div class="pt-16 font-bold text-5xl">Statistiques</div>
 
-        <canvas id="humChart" width="550" height="300"></canvas>
-        <script>
-            var ctx = document.getElementById("humChart").getContext("2d");
-            var humChart = new Chart(ctx, {
-                type: "line",
-                data: {
-                    labels: {{ labels | safe }},
-                    datasets: [
-                        {
-                            label: "humidité",
-                            data: {{ hum_values | safe }},
-                            fill: false,
-                            borderColor: "rgb(255, 255, 255)",
-                            lineTension: 0.1
-                        }
-                    ]
-                },
-                options: {
-                    responsive: false
-                }
-            });
-        </script>
 
-        <canvas id="tempChart" width="550" height="300"></canvas>
-        <script>
-            var ctx = document.getElementById("tempChart").getContext("2d");
-            var tempChart = new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: {{ labels | safe }},
-                    datasets: [
-                        {
-                            label: "température",
-                            data: {{ temp_values | safe }},
-                            fill: false,
-                            backgroundColor: "rgb(255, 255, 255)",
-                            lineTension: 0.1
-                        }
-                    ]
-                },
-                options: {
-                    responsive: false
-                }
-            });
-        </script>
+        <div class="flex">
+            <div class="flex-col py-20">
 
-        <canvas id="levelChart" width="550" height="300"></canvas>
-        <script>
-            var ctx = document.getElementById("levelChart").getContext("2d");
-            var levelChart = new Chart(ctx, {
-                type: "line",
-                data: {
-                    labels: {{ labels | safe }},
-                    datasets: [
-                        {
-                            label: "niveau de l'eau",
-                            data: {{ water_lvl_values | safe }},
-                            fill: false,
-                            borderColor: "rgb(255, 255, 255)",
-                            lineTension: 0.1
-                        }
-                    ]
-                },
-                options: {
-                    responsive: false
-                }
-            });
-        </script>
+                <div class="mb-8 p-8 rounded-lg bg-blue-300 drop-shadow-2xl w-full">
+                    <canvas id="humChart" width="650" height="350"></canvas>
+                    <script type="text/javascript" src="{{ url_for('static', filename = 'js/moisture.js') }}"></script>
+                </div>
+
+                <div class="mb-8 p-8 rounded-lg bg-yellow-300 drop-shadow-2xl">
+                    <canvas id="tempChart" width="650" height="350"></canvas>
+                    <script type="text/javascript" src="{{ url_for('static', filename = 'js/temperature.js') }}"></script>
+                </div>
+
+                <div class="mb-8 p-8 rounded-lg bg-red-300 drop-shadow-2xl">
+                    <canvas id="levelChart" width="650" height="350"></canvas>
+                    <script type="text/javascript" src="{{ url_for('static', filename = 'js/water_lvl.js') }}"></script>
+                </div>
+
+            </div>
+
+            <div></div>
+
+        </div>
 
         <canvas id="healthChart" width="550" height="300"></canvas>
 
