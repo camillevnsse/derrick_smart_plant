@@ -54,6 +54,13 @@ def disconnect():
     print('Client disconnected', request.sid)
 
 
+    @app.route("/statistics")
+def statistics():
+    dt = db_test.result
+
+    return render_template("statistics.html")
+
+
 @app.route("/settings", methods=["POST", "GET"])
 def settings():
     if request.method == "POST":
@@ -61,17 +68,6 @@ def settings():
         requests.post('http://127.0.0.1:5001/watering', json=freq)
     return render_template("settings.html")
 
-
-@app.route("/statistics")
-def statistics():
-    dt = db_test.result
-    labels = [i for i in range(len(dt))]
-    hum_values = [j[0] for j in dt]
-    temp_values = [k[1] for k in dt]
-    water_lvl_values = [l[2] for l in dt]
-    healthy_values = [m[3] for m in dt]
-
-    return render_template("statistics.html", labels=labels, hum_values=hum_values, temp_values=temp_values, water_lvl_values=water_lvl_values, healthy_values=healthy_values)
 
 
 @app.route("/city", methods=("GET", "POST"))
