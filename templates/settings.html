@@ -11,26 +11,30 @@
     <body>
         {% extends "template.html" %}
         {% block content %}
-        <div class="pt-16 font-bold text-5xl">Paramètres</div>
+        <div class="pt-16 font-bold text-5xl ">Paramètres</div>
 
-        <img class =" xl:float-right pt-36 bg-transparent drop-shadow-xl" id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">
-        <div class=" grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-2">
-            <div class =  " py-5 px-5 col-auto bg-orange-400/50 rounded-md drop-shadow-2xl text-center">Intensité de la luminosité :<span class="font-extrabold decoration-red-600 " > 37%</span></span></div>
-
-        <div class =  "col-auto bg-orange-400/50 rounded-md drop-shadow-2xl text-center">
-            <div class="col-2 py-5 font-semibold:"> Intensité seuil : 
-            
-    
-            <input class=" px-5 rounded-lg overflow-hidden appearance-none bg-yellow-400 h-3 w-100"  type="range" value="seuil" min="1" max="100" oninput="this.nextElementSibling.value = this.value">
-            <output>seuil</output>
-            
+        <img class =" justify-items-stretch xl:float-right pt-10 bg-transparent drop-shadow-xl" id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">
+        <div>
+        <p class="pt-10 text-center font-extrabold text-slate-500">Luminosité</p>
+        <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
+            <div class =  " py-5 px-5 col-auto bg-green-100 rounded-md drop-shadow-2xl text-center font-semibold">Intensité de la luminosité :<span class="font-extrabold" > 37%</span></div>
+        <div class =  "col-auto bg-green-100 rounded-md drop-shadow-2xl text-center">
+            <div class=" col-2 py-5 font-semibold"> Intensité seuil : 
+            <div class="px-5"><input class=" rounded-lg overflow-hidden appearance-none bg-blue-200 h-3 w-100"  type="range" value="seuil" min="1" max="100" oninput="this.nextElementSibling.value = this.value"><output>seuil</output></div>
+            </div>
         </div>
     </div>
-
-        <p>Délai d'envoi de données : <input type="number"> minutes</p>
-
-        <input type="button" id='script' name="scriptbutton" value=" Send Notification " onclick="goPython()">
-
+    
+        <p class="pt-10 text-center font-extrabold text-slate-500"> Commandes et transmission</p>
+        <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
+        
+        <div class=" col-auto bg-green-200 rounded-md drop-shadow-2xl px-5 py-5 text-center font-semibold">Délai d'envoi de données (minutes): <input class="bg-blue-200" type="number"> <span class="pt-5"><input class=" px-2 py-2 rounded-full bg-cyan-400 hover:bg-cyan-600" type="button" id="script" name = "scriptbutton" value="Valider" onclick="goPython()"></span>
+        </div>
+        <div class =" col-auto bg-green-200 rounded-md drop-shadow-2xl text-center pt-10"><input class="px-5 pt-5 py-5 rounded-full hover:bg-cyan-800 focus:outline-none focus:ring-0 transition duration-150 ease-in-out bg-cyan-600 text-zinc-50" type="button" id='script' name="scriptbutton" value=" Arroser Derrick" onclick="goPython()">
+        </div>
+        </div>
+        
+        
         <script>
               async function goPython () {
               const resp = await fetch(`${document.location.protocol }//${document.location.host}/notification`);
