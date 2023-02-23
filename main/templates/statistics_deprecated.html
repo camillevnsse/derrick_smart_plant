@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>statistiques</title>
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    </head>
+    <body>
+        {% extends "template.html" %}
+        {% block content %}
+        <div class="pt-16 font-bold text-5xl">Statistiques</div>
+
+
+        <div class="flex">
+            <div class="flex-col py-20">
+                
+                <div class="mb-8 p-8 rounded-lg bg-blue-300 drop-shadow-2xl w-full">
+                    <canvas id="humChart" width="650" height="350"></canvas>
+                    <script>
+                        var ctx = document.getElementById("humChart").getContext("2d");
+                        var humChart = new Chart(ctx, {
+                            type: "line",
+                            data: {
+                                labels: {{ labels | safe }},
+                                datasets: [
+                                    {
+                                        label: "humidité",
+                                        data: {{ hum_values | safe }},
+                                        fill: false,
+                                        borderColor: "rgb(52, 158, 235)",
+                                        lineTension: 0.1
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: false
+                            }
+                        });
+                    </script>
+                </div>
+                
+                <div class="mb-8 p-8 rounded-lg bg-yellow-300 drop-shadow-2xl">
+                    <canvas id="tempChart" width="650" height="350"></canvas>
+                    <script>
+                        var ctx = document.getElementById("tempChart").getContext("2d");
+                        var tempChart = new Chart(ctx, {
+                            type: "bar",
+                            data: {
+                                labels: {{ labels | safe }},
+                                datasets: [
+                                    {
+                                        label: "température",
+                                        data: {{ temp_values | safe }},
+                                        fill: false,
+                                        backgroundColor: "rgb(255, 196, 0)",
+                                        lineTension: 0.1
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: false
+                            }
+                        });
+                    </script>
+                </div>
+
+                <div class="mb-8 p-8 rounded-lg bg-red-300 drop-shadow-2xl">
+                    <canvas id="levelChart" width="650" height="350"></canvas>
+                    <script>
+                        var ctx = document.getElementById("levelChart").getContext("2d");
+                        var levelChart = new Chart(ctx, {
+                            type: "line",
+                            data: {
+                                labels: {{ labels | safe }},
+                                datasets: [
+                                    {
+                                        label: "niveau de l'eau",
+                                        data: {{ water_lvl_values | safe }},
+                                        fill: false,
+                                        borderColor: "rgb(222, 62, 62)",
+                                        lineTension: 0.1
+                                    }
+                                ]
+                            },
+                            options: {
+                                responsive: false
+                            }
+                        });
+                    </script>
+                </div>
+
+            </div>
+
+            <div></div>
+
+        </div>
+
+        <canvas id="healthChart" width="550" height="300"></canvas>
+
+        {% endblock %}
+    </body>
+</html>

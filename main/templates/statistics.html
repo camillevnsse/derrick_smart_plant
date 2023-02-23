@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Statistiques</title>
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    </head>
+    <body>
+        {% extends "template.html" %}
+        {% block content %}
+        <div class="pt-16 font-bold text-5xl">Statistiques</div>
+
+
+        <div class="flex">
+            <div class="py-16 pr-12 grid 2xl:grid-cols-2 gap-12">
+
+                <div class="relative p-8 rounded-lg bg-blue-300 drop-shadow-2xl">
+                    <canvas id="humChart" width="650" height="350"></canvas>
+                    <script type="text/javascript" src="{{ url_for('static', filename = 'js/moisture.js') }}"></script>
+                </div>
+
+                <div class="relative p-8 rounded-lg bg-yellow-300 drop-shadow-2xl">
+                    <canvas id="tempChart" width="650" height="350"></canvas>
+                    <script type="text/javascript" src="{{ url_for('static', filename = 'js/temperature.js') }}"></script>
+                </div>
+
+                <div class="relative p-8 rounded-lg bg-red-300 drop-shadow-2xl">
+                    <canvas id="levelChart" width="650" height="350"></canvas>
+                    <script type="text/javascript" src="{{ url_for('static', filename = 'js/water_lvl.js') }}"></script>
+                </div>
+
+            </div>
+
+            <div></div>
+
+        </div>
+
+        <canvas id="healthChart" width="550" height="300"></canvas>
+
+        {% endblock %}
+    </body>
+</html>

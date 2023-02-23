@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="fr" >
+    <head>
+        <meta charset="utf-8">
+        <title>Accueil</title>
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    </head>
+    <body>
+        {% extends "template.html" %}
+        {% block content %}
+        <div class="pt-16 font-bold text-5xl">Bienvenue !</div>
+        <img class ="xl:float-right pt-12 px-12 drop-shadow-xl" id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">
+        <div class="py-16 pr-12 grid md:grid-cols-2 gap-8">
+            <div class="bg-blue-300/50 rounded-md drop-shadow-2xl">
+                <p class="m-5 text-2xl 2xl:text-3xl font-bold">Humidité</p>
+                <p class="float-right m-7 text-5xl 2xl:text-6xl font-bold text-blue-500">{{hum}}%</p>
+            </div>
+            <div class="bg-yellow-200/75 rounded-md drop-shadow-2xl">
+                <p class="m-5 text-2xl 2xl:text-3xl font-bold">Température</p>
+                <p class="float-right m-7 text-5xl 2xl:text-6xl font-bold text-yellow-500">{{temp}}°C</p>
+            </div>
+            <div class="bg-red-300/50 rounded-md drop-shadow-2xl md:col-span-2">
+                <p class="m-5 text-2xl 2xl:text-3xl font-bold">Niveau d'eau</p>
+                <div class="h-48"></div>
+            </div>
+        </div>
+        <!--<p>Le niveau d'humidité est à 67%. Votre plante est en bonne santé.</p>
+        <p>La température ambiante est de 18°C.</p>-->
+        {% endblock %}
+    </body>
+</html>

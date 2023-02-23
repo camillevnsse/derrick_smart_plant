@@ -1,0 +1,60 @@
+<!-- parent file of all template files -->
+
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>parent</title>
+        <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/template.css') }}"> -->
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-200/50">
+        <header>
+            <div class="container">
+                <strong><nav>
+                    <div class="fixed float-left h-screen w-48 bg-lime-300/40 shadow-xl">
+                        <a href="{{url_for('home')}}">
+                            <div class="relative flex items-center justify-center mx-8 mt-4">
+                                <img src="{{ url_for('static', filename='favicon.ico') }}">
+                            </div>
+                            <div class="pt-2 font-semibold text-3xl text-center">Derrick</div>
+                        </a>
+                        <div class="h-1 mx-4 mt-5 rounded-md bg-emerald-600/50"></div>
+                        <div class="flex flex-col mx-3 my-5 text-emerald-600/50">
+                            <a href="{{url_for('home')}}">
+                                <div class="flex h-10 w-10 mx-1 my-1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/5729/5729968.png">
+                                    <span class="px-3 py-2">Accueil</span>
+                                </div>
+                            </a>
+                            <a href="{{url_for('settings')}}">
+                                <div class="flex h-10 w-10 mx-1 my-1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/5698/5698946.png">
+                                    <span class="px-3 py-2">Paramètres</span>
+                                </div>
+                            </a>
+                            <a href="{{url_for('statistics')}}">
+                                <div class="flex h-10 w-10 mx-1 my-1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/5429/5429629.png">
+                                    <span class="px-3 py-2">Statistiques</span>
+                                </div>
+                            </a>
+                            <!--<a href="{{url_for('get_weather')}}">-->
+                                <div class="flex h-10 w-10 mx-1 my-1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2046/2046254.png">
+                                    <span class="px-3 py-2">Météo</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="h-1 mx-4 rounded-md bg-emerald-600/50"></div>
+                    </div>
+                </nav></strong>
+            </div>
+        </header>
+        <div class="pl-60">
+            {% block content%}
+            {% endblock %}
+        </div>
+    </body>
+</html>
