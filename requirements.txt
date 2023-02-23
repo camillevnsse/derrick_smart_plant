@@ -1,0 +1,8 @@
+json
+flask
+requests
+sqlite3
+pushbullet
+schedule
+random
+flask_socketio
