@@ -82,12 +82,9 @@ def statistics():
     return render_template("statistics.html")
 
 
-@app.route("/weather", methods=("GET", "POST"))
-def get_weather():
-    return render_template("weather.html")
-
-
 @app.route("/water")
 def test_notif():
     WateringApi.water()
     return json.dumps({"status": 200, "notification_status": "correct"})
+
+from main import meteo
