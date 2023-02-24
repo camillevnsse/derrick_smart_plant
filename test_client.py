@@ -42,9 +42,9 @@ def data_freq():
 
 while True:
         # valeurs temporairement aléatoires : à fortiori ce sera les valeurs envoyées par les sensors
-        add_data("humidity", round(random() * 100, 2), "test hum")
-        add_data("temperature", round(random() * 100, 2), "test temp")
-        add_data("water_lvl", round(random() * 100, 2), "test wat")
+        add_data("humidity", round(random() * 100, 1), "test hum")
+        add_data("temperature", round(random() * 100, 1), "test temp")
+        add_data("water_lvl", round(random() * 100, 1), "test wat")
         sleep(3)
 
 
