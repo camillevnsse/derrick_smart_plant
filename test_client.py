@@ -38,17 +38,18 @@ def data_freq():
         return data_freq
     else:
         return "1" # fréquence d'envoi des données par défaut : toutes les secondes
-    
 
 
-if __name__ == "__main__":
-    app.run(debug=True, port=5001)
-
-    while True:
-# valeurs temporairement aléatoires : à fortiori ce sera les valeurs envoyées par les sensors
+while True:
+        # valeurs temporairement aléatoires : à fortiori ce sera les valeurs envoyées par les sensors
         add_data("humidity", round(random() * 100, 2), "test hum")
         add_data("temperature", round(random() * 100, 2), "test temp")
         add_data("water_lvl", round(random() * 100, 2), "test wat")
         sleep(3)
-        print("e")
+
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5001)
+    
+
 

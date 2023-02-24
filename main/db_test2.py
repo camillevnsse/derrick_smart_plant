@@ -2,10 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 from random import random
 from main import db
 
-'''
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///test_database.db"
-db = SQLAlchemy(app)
-'''
 
 max_data_amount = 10
 
@@ -39,10 +35,6 @@ db.create_all()
 
 
 #fonctions pour ajouter/supprimer/obtenir des données dans la db
-
-hum_values = []
-temp_values = []
-wat_values = []
 
 def add_data(data_type, value_add, date_add):
 
@@ -105,17 +97,11 @@ def reset_db():
     
     db.session.commit()
 
-
+'''
 hum_values = Hum.query.all()
 temp_values = Temp.query.all()
 wat_values = Wat.query.all()
 print(hum_values)
 print(temp_values)
 print(wat_values)
-
 '''
-hum_1 = hum_values[-1].values
-temp_1 = temp_values[-1].values
-'''
-
-#get data

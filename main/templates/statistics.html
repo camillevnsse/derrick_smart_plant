@@ -19,23 +19,24 @@
             <div class="py-16 pr-12 grid 2xl:grid-cols-2 gap-12">
 
                 <div class="relative p-8 rounded-lg bg-blue-300 drop-shadow-2xl">
-                    <canvas id="humChart" width="650" height="350"></canvas>
+                    <div class="text-center pb-5 font-bold text-xl">Humidité</div>
+                    <canvas id="humChart" width="800" height="400"></canvas>
                     <script type="text/javascript" src="{{ url_for('static', filename = 'js/moisture.js') }}"></script>
                 </div>
 
                 <div class="relative p-8 rounded-lg bg-yellow-300 drop-shadow-2xl">
-                    <canvas id="tempChart" width="650" height="350"></canvas>
+                    <div class="text-center pb-5 font-bold text-xl">Temperature</div>
+                    <canvas id="tempChart" width="800" height="400"></canvas>
                     <script type="text/javascript" src="{{ url_for('static', filename = 'js/temperature.js') }}"></script>
                 </div>
 
                 <div class="relative p-8 rounded-lg bg-red-300 drop-shadow-2xl">
-                    <canvas id="levelChart" width="650" height="350"></canvas>
+                    <div class="text-center pb-5 font-bold text-xl">Niveau d'eau</div>
+                    <canvas id="levelChart" width="800" height="400"></canvas>
                     <script type="text/javascript" src="{{ url_for('static', filename = 'js/water_lvl.js') }}"></script>
                 </div>
 
             </div>
-
-            <div></div>
 
         </div>
 

@@ -12,6 +12,7 @@ import requests
 thread = None
 thread_lock = Lock()
 
+
 # récupérer la date actuelle
 def get_current_datetime():
     now = datetime.now()
@@ -29,12 +30,7 @@ def background_thread():
         water_lvl = dbt.get_last_data("water_lvl", 1)[0]
 
         socketio.emit('updateSensorData', {'hum_value': humidity, "temp_value": temperature, "wat_value": water_lvl , "date": get_current_datetime(), "animation": ''})
-        print("e")
         socketio.sleep(3)
-        
-        # @luc : il faudrait que les valeurs soient les dernières de la db
-        # @luc : il faut que tu fasses le truc de l'initialisation où ça push les 10 dernières valeurs de la db
-        # on va emit dans un dictionnaire {"humidity": float, "temperature": float, "niveau eau": float, "date": string}
 
 
 # page d'accueil
@@ -42,7 +38,8 @@ def background_thread():
 def home():
     hum = dbt.get_last_data("humidity", 1)[0]
     temp = dbt.get_last_data("temperature", 1)[0]
-    return render_template("home.html", hum=hum, temp=temp)
+    wat = dbt.get_last_data("water_lvl", 1)[0]
+    return render_template("home.html", hum=hum, temp=temp, wat=wat)
 
 
 # connexion au client pour le socket
@@ -63,6 +60,7 @@ def connect():
     with thread_lock:
         if thread is None:
             thread = socketio.start_background_task(background_thread)
+
 
 # déconnexion du client
 @socketio.on('disconnect')

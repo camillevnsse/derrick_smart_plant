@@ -23,7 +23,61 @@
             </div>
             <div class="bg-red-300/50 rounded-md drop-shadow-2xl md:col-span-2">
                 <p class="m-5 text-2xl 2xl:text-3xl font-bold">Niveau d'eau</p>
-                <div class="h-48"></div>
+                
+                <div class="m-16 2xl:px-24">
+                    <canvas id="myChart" width="1000" height="1000"></canvas>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    // setup block
+                    const wat = '{{wat}}'
+                    const data = {
+                        labels: [],
+                        datasets :[{
+                            label: ["Niveau d'eau"],
+                            data: [wat, 100-wat],
+                            borderWidth : 2,
+                            backgroundColor : ["#ef4444", "transparent"],
+                            borderColor : ["grey"],
+                            cutout : "50%",
+                            borderRadius : 0
+                        }]
+                    }
+
+                    // center value plugin block
+                    const textCenter = {
+                        id : "textCenter",
+                        beforeDraw(chart, args, options){
+                            const { ctx, chartArea : {top, right, bottom, left, width, height} } = chart;
+                            ctx.save();
+                            ctx.font = "bold " + width/12 + "px arial";
+                            ctx.textAlign = "center";
+                            ctx.fillStyle = "#ef4444";
+                            ctx.fillText(wat + "%", width/2, (height/2)+(width/12)*0.20)
+
+                        }
+                    };
+
+                    // config block
+                    const config = {
+                        type : "doughnut",
+                        data: data,
+                        options : {
+                            plugins : {
+                                tooltip : {enabled : false}
+                            }
+                        },
+                        plugins : [textCenter]
+                    };
+
+                    // render init block
+                    const  myChart = new Chart(
+                        document.getElementById('myChart'),
+                        config
+                    );
+
+                </script>
+                
             </div>
         </div>
         <!--<p>Le niveau d'humidité est à 67%. Votre plante est en bonne santé.</p>

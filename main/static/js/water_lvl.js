@@ -7,7 +7,7 @@ $(document).ready(function () {
       datasets: [{ label: "Niveau de l'eau",  }],
     },
     options: {
-      borderWidth: 3,
+      borderWidth: 2,
       borderColor: ['rgb(222, 62, 62)',],
     },
   });
