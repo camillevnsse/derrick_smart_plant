@@ -21,17 +21,17 @@
 
             <div id="left">
                 {% if data%}
-                {% if data["cod"] == 200 %}
-                <p id="temp">{{ data.main.temp|round(1) }}°</p>
-                <h2>{{ city|title }}</h2>
-                <figure id="logo-weather">
-                    <img src="http://openweathermap.org/img/wn/{{ data.weather[0].icon }}@2x.png" alt="weather icon">
-                    <figcaption>{{ data.weather[0].description }}</figcaption>
-                </figure>
-                {% else %}
-                <h3>Your search <em>{{ city|title }}</em> gave a {{ data["cod"] }} code.</h3><br>
-                <h3>Veuillez réessayer</h3>
-                {% endif %}
+                    {% if data["cod"] == 200 %}
+                    <p id="temp">{{ data.main.temp|round(1) }}°</p>
+                    <h2>{{ city|title }}</h2>
+                    <figure id="logo-weather">
+                        <img src="http://openweathermap.org/img/wn/{{ data.weather[0].icon }}@2x.png" alt="weather icon">
+                        <figcaption>{{ data.weather[0].description }}</figcaption>
+                    </figure>
+                    {% else %}
+                    <h3>Your search <em>{{ city|title }}</em> gave a {{ data["cod"] }} code.</h3><br>
+                    <h3>Veuillez réessayer</h3>
+                    {% endif %}
                 {% else %}
                 <h2>Utilisez la barre de recherche pour chercher une ville particulière</h2>
                 {% endif %}
@@ -41,13 +41,69 @@
             <div id="right">
                 <h1>Météo</h1>
 
-                <form method="post" action="{{ url_for('get_weather') }}">
+                <form method="post" action="{{ url_for('get_weather') }}" id="formulaireville">
                     <label for="city">Ville</label>
-                    <input name="city" type="text" value="{{ request.form['city'] }}">
+                    <input  class="text-stone-700" name="city" id="city" type="text" value="{{ request.form['city'] }}">
+                    <div id="suggestioncontainer">
+                        <div class="bg-slate-50 text-stone-700" id="suggestions"></div>
+                    </div>
+                    
+                    <style>
+                    #suggestioncontainer{
+                        position: relative;
+                        height: 0;
+                        overflow: visible;
+                    }
+                    </style>
 
                     <button type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
+
+                    <script>
+                        
+                        let elem_formulaire = document.getElementById("formulaireville");
+                        
+                        
+
+                        let datacity;
+
+                        function main(){
+                            let city = document.getElementById("city");
+                            function citychanged(e) {
+                                let val = city.value;
+                                console.log(val)
+                                prop(val)
+                            }
+                            city.addEventListener("input",citychanged);
+
+                            function prop(val){
+                                let searchval = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                                searchval =  val.toUpperCase()
+                                
+                                //const result = datacity.filter( ville => ville[0].includes(searchval)).sort(ville => !ville[0].startsWith(searchval));
+                                const result = datacity.filter( ville => ville[0].startsWith(searchval));
+                                const propositions = result.slice(0,5)
+                                document.getElementById("suggestions").innerHTML="";
+                                for (let i = 0; i < propositions.length; i++) {
+                                    const prop = propositions[i];
+                                    let suggestionsbox = document.createElement("div");
+                                    let lien = "?cityid="+prop[1];
+                                    suggestionsbox.innerHTML = "<a href='"+lien+"'>"+prop[2]+"</a>";
+                                    document.getElementById("suggestions").appendChild(suggestionsbox);
+                                }
+                            }
+                        }
+
+                        fetch("/cities")
+                        .then(rep => rep.json())
+                        .then((data)=>{
+                            datacity = data
+                            main()
+                        })
+
+
+                    </script>
 
                 </form>
 
