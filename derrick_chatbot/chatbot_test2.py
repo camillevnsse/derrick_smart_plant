@@ -2,23 +2,23 @@ from nltk.chat.util import Chat, reflections
 
 pairs = [
     [
-        r"mon nom est (.*)",
-        ["Bonjour %1, comment allez-vous aujourd'hui?", ]
+        r"(mon nom est|je m'appelle) (.*)",
+        ["Bonjour %2, comment allez-vous aujourd'hui?", "Salut %2, ravi de te rencontrer."]
     ],
     [
         r"comment tu t'appelles|quel est ton nom|comment t'appelles-tu",
-        ["Mon nom est Derrick et je suis un chatbot", ]
+        ["Mon nom est Derrick et je suis un chatbot", "moi c'est Derrick! Je suis un chatbot!"]
     ],
     [
-        r"(comment vas-tu|ça va?|tu vas bien)",
-        ["Je vais bien\nEt vous ?", ]
+        r"(comment vas-tu|ça va?|tu vas bien|comment tu vas|comment ça va)",
+        ["Je vais bien\nEt vous ?", "ça va super et vous?"]
     ],
     [
         r"désolée",
         ["Pas de souci", "Pas de problème", "ne vous en faites pas ce n'est pas grave"]
     ],
     [
-        r"je vais bien|ça va merci",
+        r"je vais bien|tout va bien",
         ["ravi de l'entendre!", "super !", ]
     ],
     [
@@ -32,21 +32,21 @@ pairs = [
     ],
     [
         r"qu'est-ce que tu veux |tu veux quoi",
-        ["Faites-moi une offre que je ne peux pas refuser", ]
+        ["Faites-moi une offre que je ne peux pas refuser", "Je ne veux que vous aider"]
 
     ],
     [
         r"(.*) créé ?",
-        ["J'ai été créé par l'équipe Derrick en 2023 ", "top secret ;)", ]
+        ["J'ai été créé par l'équipe Derrick en 2023 ", "Alors ça, c'est top secret ;)"]
     ],
     [
-        r"(.*) (ville|endroit|lieu) ?",
-        ['A Buc, en Ile de France!', ]
+        r"(.*) (ville|endroit|lieu) ?|où habites-tu|où est-ce que tu habites",
+        ['A Buc, en Ile de France!', "Au Lycée Franco-Allemand de Buc, un lycée d'exception"]
     ],
     [
         r"(.*)météo à (.*)?",
         ["La météo à %2 est incroyable comme toujours", "Beaucoup trop chaud à %2, je vais fondre", "Beaucoup trop froid à %2, mes circuits vont geler",
-         "Jamais entendu parler de %1"]
+         "Jamais entendu parler de %2"]
     ],
 
     [
