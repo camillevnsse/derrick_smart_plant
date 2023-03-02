@@ -31,7 +31,7 @@ pairs = [
 
     ],
     [
-        r"qu'est-ce que tu veux |tu veux quoi",
+        r"qu'est-ce que tu veux |tu veux quoi|que veux tu",
         ["Faites-moi une offre que je ne peux pas refuser", "Je ne veux que vous aider"]
 
     ],
@@ -72,7 +72,7 @@ pairs = [
       ["Je peux vous conseiller des sites comme jardiland, au jardin, jardiner malin, gerbeaud ou encore rustica"]
     ],
     [
-        r"santé(.*)",
+        r"(.*)santé(.*)",
         ["Je suis un programme informatique, donc je suis toujours en bonne santé", ]
     ],
     [
