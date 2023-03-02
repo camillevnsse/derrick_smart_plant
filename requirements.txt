@@ -11,3 +11,12 @@ flask_sqlalchemy
 time
 threading
 requests
+python-dotenv
+pushbullet.py
+machine
+nltk
+setuptools
+SQLAlchemy
+mathparse
+python-dateutil
+pytz
