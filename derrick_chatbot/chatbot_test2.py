@@ -68,7 +68,7 @@ pairs = [
         ["Un cactus n’a pas besoin d’être arrosé régulièrement, même si lorsqu’il fait chaud, les apports en eau sont plus fréquents. Observez le substrat pour savoir si oui ou non votre cactus a besoin d’eau. Si la terre est sèche, place à l’arrosoir ! N’hésitez pas à hydrater abondamment votre plante, mais prenez garde à ne pas laisser l’eau stagner dans la soucoupe. Cela pourrait faire mourir prématurément votre cactus. Ne mouillez pas le feuillage au moment de l’arrosage, mais vaporisez de temps en temps de l’eau sur le corps du cactus pour l’hydrater au maximum."]
     ],
     [
-      r"sites(.*)(jardinage|plantes)",
+      r"(.*)sites(.*)(jardinage|plantes|jardiner)",
       ["Je peux vous conseiller des sites comme jardiland, au jardin, jardiner malin, gerbeaud ou encore rustica"]
     ],
     [
