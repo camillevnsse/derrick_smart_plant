@@ -11,27 +11,21 @@
         {% extends "template.html" %}
         {% block content %}
 <div id="contents">
-        {% if data and data["cod"] == 200 %}
-        {% set bgimage = data.weather[0].description %}
-        {% else %}
+        
         {% set bgimage = 'clear sky' %}
-        {% endif %}
 
         <div id="results" style="background-image: url({{url_for('static', filename='images/'+bgimage+'.jpg')}})">
 
             <div id="left">
-                {% if data%}
-                    {% if data["cod"] == 200 %}
-                    <p id="temp">{{ data.main.temp|round(1) }}°</p>
-                    <h2>{{ city|title }}</h2>
+                {% if data %}
+                    <p id="temp">{{ data.temp2m | round(2) }}°</p>
+                    <h2>{{ data.name }}</h2>
                     <figure id="logo-weather">
-                        <img src="http://openweathermap.org/img/wn/{{ data.weather[0].icon }}@2x.png" alt="weather icon">
-                        <figcaption>{{ data.weather[0].description }}</figcaption>
+                    
+                        <img src="http://openweathermap.org/img/wn/{{ data.correspondance[1] }}d@4x.png" alt="weather icon">
+                        <!-- sinon fais la correspondance coté serveur dans weather.html ça evite de se compliquer la vie du genre data["code_img"] = correpsondance(code_meteo) -->
+                        <figcaption>{{ data.correspondance[0] }}</figcaption>
                     </figure>
-                    {% else %}
-                    <h3>Your search <em>{{ city|title }}</em> gave a {{ data["cod"] }} code.</h3><br>
-                    <h3>Veuillez réessayer</h3>
-                    {% endif %}
                 {% else %}
                 <h2>Utilisez la barre de recherche pour chercher une ville particulière</h2>
                 {% endif %}
@@ -41,12 +35,13 @@
             <div id="right">
                 <h1>Météo</h1>
 
-                <form method="post" action="{{ url_for('get_weather') }}" id="formulaireville">
-                    <label for="city">Ville</label>
-                    <input  class="text-stone-700" name="city" id="city" type="text" value="{{ request.form['city'] }}">
-                    <div id="suggestioncontainer">
-                        <div class="bg-slate-50 text-stone-700" id="suggestions"></div>
-                    </div>
+                    <form action="" id="villeform">
+                        <input  class="text-stone-700" name="city" id="city" type="text" value="{{ request.form['city'] }}" placeholder="Ville">
+                        <div id="suggestioncontainer">
+                            <div class="text-stone-700" id="suggestions"></div>
+                        </div>
+                    </form>
+                    
                     
                     <style>
                     #suggestioncontainer{
@@ -56,43 +51,67 @@
                     }
                     </style>
 
-                    <button type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-
                     <script>
                         
-                        let elem_formulaire = document.getElementById("formulaireville");
+                        let formelem = document.getElementById("villeform");
+                        formelem.addEventListener("submit", (e)=>{
+                            e.preventDefault();
+                            e.stopPropagation();
+                            let city = document.getElementById("city");
+                            let val = city.value;
+                            let searchval = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                            searchval =  val.toUpperCase()
+                            const result = datacity.filter( ville => ville[0].trim() == searchval.trim());
+                            console.log(result)
+                            if (result.length == 1){
+                                let prop = result[0];
+                                let lien = "?insee="+prop[1];
+                                //on redirige
+                                window.location.search = lien;
+                            };
+
+                        })
                         
                         
 
                         let datacity;
 
                         function main(){
+                            
                             let city = document.getElementById("city");
                             function citychanged(e) {
                                 let val = city.value;
-                                console.log(val)
+                                
                                 prop(val)
                             }
                             city.addEventListener("input",citychanged);
 
                             function prop(val){
                                 let searchval = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                                searchval =  val.toUpperCase()
+                                searchval =  val.toUpperCase().trim()
                                 
-                                //const result = datacity.filter( ville => ville[0].includes(searchval)).sort(ville => !ville[0].startsWith(searchval));
-                                const result = datacity.filter( ville => ville[0].startsWith(searchval));
-                                const propositions = result.slice(0,5)
                                 document.getElementById("suggestions").innerHTML="";
-                                for (let i = 0; i < propositions.length; i++) {
-                                    const prop = propositions[i];
-                                    let suggestionsbox = document.createElement("div");
-                                    let lien = "?cityid="+prop[1];
-                                    suggestionsbox.innerHTML = "<a href='"+lien+"'>"+prop[2]+"</a>";
-                                    document.getElementById("suggestions").appendChild(suggestionsbox);
+                                if (searchval !== ""){
+                                    //const result = datacity.filter( ville => ville[0].includes(searchval)).sort(ville => !ville[0].startsWith(searchval));
+                                    const result = datacity.filter( ville => ville[0].startsWith(searchval));
+                                    result.sort((ville1, ville2) => ville1[0].length<ville2[0].length ? -1 : 1); // -1 if len(ville1)<len(ville2) else 1
+                                    const propositions = result.slice(0,5); 
+                                    
+                                    for (let i = 0; i < propositions.length; i++) {
+                                        const prop = propositions[i];
+                                        let suggestionsbox = document.createElement("div");
+                                        let lien = "?insee="+prop[1];
+                                        suggestionsbox.innerHTML = "<a href='"+lien+"'>"+prop[2]+"</a>";
+                                        document.getElementById("suggestions").appendChild(suggestionsbox);
+                                    }
                                 }
+                                
                             }
+                            
+
+                            
+
+
                         }
 
                         fetch("/cities")
@@ -104,26 +123,18 @@
 
 
                     </script>
-
-                </form>
-
+                
                 {% if data %}
-                {% if data["cod"] == 200 %}
+             
                 <br>
                 <h3>Weather Details:</h3>
                 <hr>
-                <p class="weather-data-item">Température ressentie: <span class="weather-data-value">{{
-                        data.main.feels_like|round(1) }} °C</span></p>
-                <p class="weather-data-item">Pression: <span class="weather-data-value">{{ data.main.pressure }}
-                        hPa</span></p>
-                <p class="weather-data-item">Humidité: <span class="weather-data-value">{{ data.main.humidity }}
-                        %</span></p>
-                <p class="weather-data-item">Vent: <span class="weather-data-value">{{ data.wind.speed }} Km/h</span>
+                <p class="weather-data-item">Température ressentie: <span class="weather-data-value">{{ data.temp_ressentie }} °C</span></p>
+                <p class="weather-data-item">Humidité: <span class="weather-data-value">{{ data.rh2m}} %</span>
+                <p class="weather-data-item">Vent: <span class="weather-data-value">{{ data.wind10m}} Km/h</span>
                 </p>
                 <hr>
-                {% else %}
-                <p></p>
-                {% endif %}
+             
                 {% endif %}
 
             </div>
