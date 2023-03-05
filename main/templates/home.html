@@ -37,8 +37,8 @@
                             label: ["Niveau d'eau"],
                             data: [wat, 100-wat],
                             borderWidth : 2,
-                            backgroundColor : ["#ef4444", "transparent"],
-                            borderColor : ["grey"],
+                            backgroundColor : ["#ef4444", "#f18c8c"],
+                            borderColor : ["transparent"],
                             cutout : "50%",
                             borderRadius : 0
                         }]
@@ -50,7 +50,7 @@
                         beforeDraw(chart, args, options){
                             const { ctx, chartArea : {top, right, bottom, left, width, height} } = chart;
                             ctx.save();
-                            ctx.font = "bold " + width/12 + "px arial";
+                            ctx.font = "bold " + width/12 + "px Nunito";
                             ctx.textAlign = "center";
                             ctx.fillStyle = "#ef4444";
                             ctx.fillText(wat + "%", width/2, (height/2)+(width/12)*0.20)
