@@ -6,8 +6,8 @@ pairs = [
         ["C'est bien moi ! Quel est votre nom ?", "A votre service ! Comment puis-je vous aider ?"]
     ],
     [
-        r"(.*) (mon nom est|je m'appelle) (.*)",
-        ["Bonjour %2, comment allez-vous aujourd'hui?", "Salut %3, ravi de te rencontrer."]
+        r"(.*)(nom est|m'appelle) (.*)",
+        ["Bonjour %3, comment allez-vous aujourd'hui?", "Salut %3, ravi de te rencontrer."]
     ],
     [
         r"comment tu t'appelles|quel est ton nom|comment t'appelles-tu|qui es-tu|qu'est-ce que tu es",
