@@ -36,16 +36,26 @@ body {
     color: white;
 }
 
+#main{
+    display:flex;
+    flex-flow:column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+}
+
 #contents {
+    /* position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%); */
     width: 70%;
-    background: #bfceff;
-    background-image: url('assets/clear sky.jpg');
+    background: #acbfff;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     text-align: center;
-
     border-radius: 20px;
-    margin: 140px auto;
+    
 }
 
 #results {
@@ -54,9 +64,12 @@ body {
     border-radius: 20px;
     height: 500px;
     display: flex;
+    flex-direction: row;
 }
 
 #left {
+    display:flex;
+    flex-direction: column;
     width: 60%;
     margin-top: 30px;
 }
@@ -79,14 +92,17 @@ h2 {
 }
 
 #logo-weather {
-    display: inline-block;
+    
+    display: flex;
+    flex-flow:column nowrap;
+    align-items:center;
 }
 
 #logo-weather img {
-    width: 60px;
+    width: 150px;
 }
 
-figcaption {
+#logo-weather figcaption {
     font-size: 20px;
 }
 
@@ -106,15 +122,24 @@ hr {
     width: 80%;
 }
 
-label,
-input {
+input#city {
+    padding:10px;
     font-size: 16px;
+}
+
+#suggestions{
+    position:relative;
+    background-color: #ffffffd5;
+    max-width:70%;
+    top:10px;
+    left:50%;
+    transform: translateX(-50%);
 }
 
 /* use font shadow */
 #temp,
 h2,
 figcaption {
-    text-shadow: 3px 3px 2px #000;
+    text-shadow: 0px 0px 10px #00000065;
 }
 
