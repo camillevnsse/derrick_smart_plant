@@ -2,7 +2,7 @@ from nltk.chat.util import Chat, reflections
 
 pairs = [
     [
-        r"Derrick",
+        r"(.*)Derrick(.*)",
         ["C'est bien moi ! Quel est votre nom ?", "A votre service ! Comment puis-je vous aider ?"]
     ],
     [
@@ -18,15 +18,15 @@ pairs = [
         ["Je suis un chatbot, et je suis là pour vous aider. Posez-moi une question, je ferai de mon mieux pour répondre !"]
     ],
     [
-        r"(.*) (bien|super|ça va) (.*) et toi ?",
+        r"(bien|super|(.*)) et toi ?",
         ["Je vais bien, merci !"]
     ],
     [
-        r"ça va bien|je vais bien|ça va super",
+        r"(.*) (bien|super|bien (.*)|super (.*))",
         ["ravi de l'entendre!", "super !", ]
     ],
     [
-        r"(comment vas-tu|ça va|tu vas bien|comment tu vas|comment ça va)",
+        r"(comment vas-tu|ça va|comment tu vas|comment ça va)",
         ["Je vais bien\nEt vous ?", "ça va super et vous?"]
     ],
     [
@@ -66,7 +66,7 @@ pairs = [
     ],
 
     [
-        r"définition plante verte|def plante verte|qu'est-ce (.*) plante verte",
+        r"définition plante verte|def plante verte|((.*)qu'est|qu'est-ce|c'est quoi) (.*) plante verte",
         ["En langage courant, une plante verte est une plante à feuilles vertes, dont l'énergie est essentiellement obtenue par la photosynthèse chlorophyllienne.", ]
     ],
 
@@ -80,7 +80,7 @@ pairs = [
         ["Un cactus n’a pas besoin d’être arrosé régulièrement, même si lorsqu’il fait chaud, les apports en eau sont plus fréquents. Observez le substrat pour savoir si oui ou non votre cactus a besoin d’eau. Si la terre est sèche, place à l’arrosoir ! N’hésitez pas à hydrater abondamment votre plante, mais prenez garde à ne pas laisser l’eau stagner dans la soucoupe. Cela pourrait faire mourir prématurément votre cactus. Ne mouillez pas le feuillage au moment de l’arrosage, mais vaporisez de temps en temps de l’eau sur le corps du cactus pour l’hydrater au maximum."]
     ],
     [
-        r"(.*)(comment|quand)(.*)(arroser|arrose|entretenir|entretient)(.*)(plante verte|plante en pot|plante d'intéreieur)",
+        r"(.*)(comment|quand)(.*)(arroser|arrose|entretenir|entretient)(.*)(plante verte|plante en pot|plante d'intérieur)",
         ["Une plante verte a besoin d'être arrosée régulièrement, mais pas trop généreusement. Arrosez donc votre plante doucement avec de l'eau à température ambiante au moins une fois par jour"]
     ],
     [
