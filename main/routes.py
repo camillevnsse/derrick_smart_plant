@@ -1,9 +1,10 @@
 import json
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from main import app, socketio
 import main.db_test2 as dbt
 from main.db_test2 import add_data, reset_db
 from main.watering import WateringApi
+from main.chatbot_test2 import get_response
 from threading import Lock
 from datetime import datetime
 from random import random
@@ -42,6 +43,17 @@ def home():
     temp = dbt.get_last_data("temperature", 1)[0]
     wat = dbt.get_last_data("water_lvl", 1)[0]
     return render_template("home.html", hum=hum, temp=temp, wat=wat)
+
+
+@app.post("/answer")
+def answer():
+    text = request.get_json().get("message")
+    response = get_response(text)
+    
+    message = {"answer": response}
+    
+    return jsonify(message)
+
 
 
 # connexion au client pour le socket
