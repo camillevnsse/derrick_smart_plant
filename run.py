@@ -1,3 +1,4 @@
+# lancer le serveur principal et le socket
 from main import app, socketio
 
 if __name__ == "__main__":
