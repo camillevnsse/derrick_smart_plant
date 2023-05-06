@@ -20,7 +20,7 @@ Ce projet est né d'un problème de la vie courante : l'entretien des plantes do
 - Télécharger les fichiers de la branche "main"
 - Le fichier (requirements.txt) contient tous les modules nécessaires au lancement du projet. Vous pouvez les installer comme suit :
   - sous windows, ouvrir l'invite de commandes et naviguer vers le dossier du projet à l'aide de la commande "cd [nom du dossier]" puis entrer la commande "pip install -r requirements.txt"
-- Depuis le dossier source, lancer en parallèle les fichiers [run.py](run.py) et [test_client.py](test_client.py)
+- Depuis le dossier source, lancer le fichier [run.py](run.py) puis [test_client.py](test_client.py) en laissant run.py actif pour qu'ils puissent communiquer entre eux.
 - Dans le navigateur, entrer l'adresse suivante : "http://127.0.0.1:5000". Vous avez maintenant accès au serveur web du projet, qui tourne sur le port 5000.
   - Dans cette version de test, vous avez accès uniquement à la version test du projet, avec des données générées aléatoirement.
 
