@@ -1,5 +1,3 @@
-# fichier principal : serveur web
-
 import json
 from flask import render_template, request, jsonify
 from main import app, socketio
@@ -57,7 +55,6 @@ def answer():
     return jsonify(message)
 
 
-
 # connexion au client pour le socket
 @socketio.on('connect')
 def connect():
@@ -88,8 +85,10 @@ def disconnect():
 @app.route("/settings", methods=["POST", "GET"])
 def settings():
     if request.method == "POST":
-        freq = {"freq": request.form.get("freq")}
-        requests.post('http://127.0.0.1:5001/watering', json=freq)
+        freq = request.form['water_freq_value']
+        # TODO: remplacer par l'adresse de l'ESP8266 (fait dans la branche "montage")
+        # requests.post('http://127.0.0.1:5001/watering', json=freq)
+
     return render_template("settings.html")
 
 
