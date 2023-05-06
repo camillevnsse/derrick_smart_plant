@@ -4,9 +4,10 @@
     <head>
         <meta charset="utf-8">
         <title>Paramètres</title>
-        
+
         <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
         {% extends "template.html" %}
@@ -19,29 +20,29 @@
 
         <!--
         <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
-        
+
             <div class="bg-green-200/90 rounded-md drop-shadow-2xl">
                 <p class="m-5 text-2xl 2xl:text-3xl font-bold">Intensité de la luminosité</p>
                 <p class="float-right m-7 text-5xl 2xl:text-6xl font-bold text-green-500/80">37%</p>
             </div>
-        
+
             <div class = "bg-green-200/90 rounded-md drop-shadow-2xl">
                 <p class="m-5 text-2xl 2xl:text-3xl font-bold">Intensité seuil</p>
                 <div class="pt-7 text-center"><input class="rounded-lg overflow-auto appearance-none bg-green-500/80 h-2 w-100 mr-3" type="range" value="seuil" min="1" max="100" oninput="this.nextElementSibling.value = this.value"><output>seuil</output></div>
             </div>
-    
+
         </div>
         -->
 
 
         <p class="pt-10 text-center font-extrabold text-xl text-gray-500">Gestion de l'arrosage</p>
-        
+
         <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
-            
+
             <div class="bg-blue-300/50 rounded-md drop-shadow-2xl">
                 <p class="m-5 text-2xl 2xl:text-3xl font-bold">Fréquence d'arrosage</p>
                 <div class="text-center m-10">
-                    <form action="htstp://127.0.0.1:5000/settings" method="POST" target="hidden-iframe">
+                    <form action="http://127.0.0.1:5000/settings" method="POST" target="hidden-iframe">
                         <label for="water_freq_value">Entrez une valeur</label>
                         <input type="number" id="water_freq_value" name="water_freq_value">
                         <button type="submit" class="bg-blue-400/50 hover:bg-blue-400/40 text-blue-600 font-bold m-5 py-2 px-4 rounded-full">Envoyer</button>
@@ -53,19 +54,28 @@
             <div class="bg-blue-300/50 rounded-md drop-shadow-2xl">
                 <p class="m-5 text-2xl 2xl:text-3xl font-bold">Arrosage manuel</p>
                 <div class="text-center">
-                    <button class="bg-blue-400/50 hover:bg-blue-400/40 text-blue-600 text-2xl font-semibold m-5 py-5 px-8 rounded-3xl">Arroser la plante</button>
+                    <button id ='script' name="scriptbutton" value=" Run Script " onclick="goPython()" class="bg-blue-400/50 hover:bg-blue-400/40 text-blue-600 text-2xl font-semibold m-5 py-5 px-8 rounded-3xl">Arroser la plante</button>
+                    <!--<script>
+                        function goPython(){
+                            $.ajax({
+                              url: "watering.py",
+                             context: document.body
+                            }).done(function() {
+                             alert('finished python script');;
+                            });
+                        }
+                    </script>-->
+                    <script>
+                        async function goPython () {
+                        const resp = await fetch(`${document.location.protocol }//${document.location.host}/water`);
+                        if (!resp.ok) throw "Request error";
+                        console.log("finished python script");
+                        }
+                    </script>
                 </div>
             </div>
-        
-        </div>
 
-        <script>
-              async function goPython () {
-              const resp = await fetch(`${document.location.protocol }//${document.location.host}/notification`);
-              if (!resp.ok) throw "Request error";
-                console.log("finished python script");
-              }
-        </script>
+        </div>
 
         {% endblock %}
     </body>
