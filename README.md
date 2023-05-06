@@ -38,8 +38,11 @@ Il est impossible de lancer la version complète du projet (branche "montage") s
 - Pour le montage physique : programmation en MicroPython avec le firmware MicroPython
 
 #### Hardware - montage physique
-- **ESP8266** : circuit intégré à microcontrôleur avec connexion Wi-Fi. Permet de communiquer avec les différents composants du système à distance
+- **ESP8266 wemos d1 mini** : circuit intégré à microcontrôleur avec connexion Wi-Fi. Permet de communiquer avec les différents composants du système à distance
 - **Pompe à eau submersible** : permet l'arrosage de la plante.
 - **Relais** : permet d'actionner la pompe.
 - **Multiplexeur** : circuit logique combinatoire conçu pour commuter l'une de plusieurs lignes d'entrée sur une seule ligne de sortie commune. Permet d'avoir plusieurs entrées analogiques pour les capteurs car il n'y a pas assez de ports analogiques sur l'ESP8266.
 - **capteur d'humidité sol** : mesure l'humidité du sol pour savoir quand arroser la plante. Agit comme une résistance variable qui varie avec l'humidité du sol.
+- **capteur de température** : mesure la température ambiante.
+- **capteur de niveau d'eau** : mesure le niveau d'eau dans le réservoir pour savoir quand le remplir de nouveau. Fonctionne comme une résistance variable; la présence d'eau entraîne un court-circuit qui permet de la détecter.
+- autres : routeur 4g, mini-pc, fils de connexion, breadboard, résistances...
