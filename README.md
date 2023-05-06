@@ -3,7 +3,9 @@
 ### table des matières
 - [introduction](#introduction)
 - [principe](#principe)
-- [lancement du projet](#lancement-du-projet)
+- [lancement de la partie serveur du projet en version test](#lancement-de-la-partie-serveur-du-projet-en-version-test)
+- [sections du site](#section du site)
+- [projet complet : montage physique](#projet-complet-:-montage-physique)
 
 ### INTRODUCTION
 Ce projet est né d'un problème de la vie courante : l'entretien des plantes domestiques. Il s'agit donc avec le projet Derrick d'automatiser l'entretien des plantes domestiques notamment à l'aide de différents capteurs et d'une interface web pour visualiser les données qu'ils envoient. 
@@ -21,7 +23,7 @@ Ce projet est né d'un problème de la vie courante : l'entretien des plantes do
 - Dans le navigateur, entrer l'adresse suivante : "http://127.0.0.1:5000". Vous avez maintenant accès au serveur web du projet, qui tourne sur le port 5000.
   - Dans cette version de test, vous avez accès uniquement à la version test du projet, avec des données générées aléatoirement.
 
-### SECTIONS DU SERVEUR WEB
+### SECTIONS DU SITE
 1) Accueil : affiche les données de température, d'humidité du sol et de niveau d'eau dans le réservoir en temps réel.
 2) Paramètres : permet de modifier la fréquence d'envoi des données des capteurs ainsi que la fréquence d'arrosage automatique. Permet également d'arroser manuellement la plante.
 3) Statistiques : visualise et met à jour en temps réel les données reçues par les capteurs dans des graphiques différents. Seulement les 10 dernières données sont affichées à l'écran pour plus de lisibilité.
