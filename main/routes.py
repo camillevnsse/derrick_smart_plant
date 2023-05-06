@@ -1,3 +1,5 @@
+# fichier principal : serveur web
+
 import json
 from flask import render_template, request, jsonify
 from main import app, socketio
