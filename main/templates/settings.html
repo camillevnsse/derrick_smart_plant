@@ -3,7 +3,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>paramètres</title>
+        <title>Paramètres</title>
         
         <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     
@@ -12,31 +12,53 @@
         {% extends "template.html" %}
         {% block content %}
         <div class="pt-16 font-bold text-5xl ">Paramètres</div>
-
         <img class =" justify-items-stretch xl:float-right pt-10 bg-transparent drop-shadow-xl" id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">
-        <div>
-        <p class="pt-10 text-center font-extrabold text-green-400">Luminosité</p>
-        <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
-            <div class =  " py-5 px-5 col-auto bg-green-200 rounded-md drop-shadow-2xl text-center font-semibold">Intensité de la luminosité :<span class="font-extrabold" > 37%</span></div>
-        <div class =  "col-auto bg-green-200 rounded-md drop-shadow-2xl text-center">
-            <div class=" col-2 py-5 font-semibold"> Intensité seuil : 
-            <div class="px-5"><input class=" rounded-lg overflow-hidden appearance-none bg-green-400 h-3 w-100"  type="range" value="seuil" min="1" max="100" oninput="this.nextElementSibling.value = this.value"><output>seuil</output></div>
-            </div>
-        </div>
-    </div>
-    
-        <p class="pt-10 text-center font-extrabold text-green-400"> Commandes et transmission</p>
-        <div><p></p>
-        <p>fréquence d'arrosage automatique</p>
-        <form action="htstp://127.0.0.1:5000/settings" method="POST" target="hidden-iframe">
-            <label for="water_freq_value">Entrez une valeur</label>
-            <input type="number" id="water_freq_value" name="water_freq_value">
-            <button type="submit" class="bg-lime-200 hover:bg-lime-300 text-lime-700 font-bold py-2 px-4 rounded-full">Envoyer</button>
-        </form>
-        <iframe name="hidden-iframe" style="display:none;"></iframe>
 
-        </div>
+
+        <p class="pt-10 text-center font-extrabold text-xl text-gray-500">Informations sur l'arrosage</p>
+
+        <!--
+        <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
         
+            <div class="bg-green-200/90 rounded-md drop-shadow-2xl">
+                <p class="m-5 text-2xl 2xl:text-3xl font-bold">Intensité de la luminosité</p>
+                <p class="float-right m-7 text-5xl 2xl:text-6xl font-bold text-green-500/80">37%</p>
+            </div>
+        
+            <div class = "bg-green-200/90 rounded-md drop-shadow-2xl">
+                <p class="m-5 text-2xl 2xl:text-3xl font-bold">Intensité seuil</p>
+                <div class="pt-7 text-center"><input class="rounded-lg overflow-auto appearance-none bg-green-500/80 h-2 w-100 mr-3" type="range" value="seuil" min="1" max="100" oninput="this.nextElementSibling.value = this.value"><output>seuil</output></div>
+            </div>
+    
+        </div>
+        -->
+
+
+        <p class="pt-10 text-center font-extrabold text-xl text-gray-500">Gestion de l'arrosage</p>
+        
+        <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
+            
+            <div class="bg-blue-300/50 rounded-md drop-shadow-2xl">
+                <p class="m-5 text-2xl 2xl:text-3xl font-bold">Fréquence d'arrosage</p>
+                <div class="text-center m-10">
+                    <form action="htstp://127.0.0.1:5000/settings" method="POST" target="hidden-iframe">
+                        <label for="water_freq_value">Entrez une valeur</label>
+                        <input type="number" id="water_freq_value" name="water_freq_value">
+                        <button type="submit" class="bg-blue-400/50 hover:bg-blue-400/40 text-blue-600 font-bold m-5 py-2 px-4 rounded-full">Envoyer</button>
+                    </form>
+                    <iframe name="hidden-iframe" style="display:none;"></iframe>
+                </div>
+            </div>
+
+            <div class="bg-blue-300/50 rounded-md drop-shadow-2xl">
+                <p class="m-5 text-2xl 2xl:text-3xl font-bold">Arrosage manuel</p>
+                <div class="text-center">
+                    <button class="bg-blue-400/50 hover:bg-blue-400/40 text-blue-600 text-2xl font-semibold m-5 py-5 px-8 rounded-3xl">Arroser la plante</button>
+                </div>
+            </div>
+        
+        </div>
+
         <script>
               async function goPython () {
               const resp = await fetch(`${document.location.protocol }//${document.location.host}/notification`);
