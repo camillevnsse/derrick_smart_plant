@@ -15,7 +15,7 @@
 
         <img class =" justify-items-stretch xl:float-right pt-10 bg-transparent drop-shadow-xl" id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">
         <div>
-        <p class="pt-10 text-center font-extrabold text-slate-500">Luminosité</p>
+        <p class="pt-10 text-center font-extrabold text-green-400">Luminosité</p>
         <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
             <div class =  " py-5 px-5 col-auto bg-green-200 rounded-md drop-shadow-2xl text-center font-semibold">Intensité de la luminosité :<span class="font-extrabold" > 37%</span></div>
         <div class =  "col-auto bg-green-200 rounded-md drop-shadow-2xl text-center">
@@ -25,15 +25,17 @@
         </div>
     </div>
     
-        <p class="pt-10 text-center font-extrabold text-slate-500"> Commandes et transmission</p>
-        <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
-        
-        <div class=" col-auto bg-green-200 rounded-md drop-shadow-2xl px-5 py-5 text-center font-semibold">Délai d'envoi de données (minutes):<div class="pt-2"> <input class="bg-green-400" type="number"> <div class="pt-2"></div><input class=" px-2 py-2 rounded-full bg-cyan-600 hover:bg-cyan-800 text-zinc-50" type="button" id="script" name = "scriptbutton" value="Valider" onclick="goPython()"></div>
+        <p class="pt-10 text-center font-extrabold text-green-400"> Commandes et transmission</p>
+        <div><p></p>
+        <p>fréquence d'arrosage automatique</p>
+        <form action="htstp://127.0.0.1:5000/settings" method="POST" target="hidden-iframe">
+            <label for="water_freq_value">Entrez une valeur</label>
+            <input type="number" id="water_freq_value" name="water_freq_value">
+            <button type="submit" class="bg-lime-200 hover:bg-lime-300 text-lime-700 font-bold py-2 px-4 rounded-full">Envoyer</button>
+        </form>
+        <iframe name="hidden-iframe" style="display:none;"></iframe>
+
         </div>
-        <input class =" col-auto  rounded-full hover:bg-cyan-800 focus:outline-none focus:ring-0 transition duration-150 ease-in-out bg-cyan-600 text-zinc-50" type="button" id='script' name="scriptbutton" value=" Arroser Derrick" onclick="goPython()">
-        
-        </div>
-        
         
         <script>
               async function goPython () {
