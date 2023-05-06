@@ -1,3 +1,4 @@
+# chatbot : permet d'associer des réponses aux requêtes utilisateur
 from nltk.chat.util import Chat, reflections
 
 pairs = [
