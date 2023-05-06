@@ -30,10 +30,9 @@
 }
 
 body {
-    padding-left: 1rem;
     background: #6d9dfc;
     font-family: 'Lato', sans-serif;
-    color: white;
+    color: black;
 }
 
 #main{
