@@ -4,8 +4,9 @@
 - [introduction](#introduction)
 - [principe](#principe)
 - [lancement de la partie serveur du projet en version test](#lancement-de-la-partie-serveur-du-projet-en-version-test)
-- [sections du site](#section du site)
-- [projet complet : montage physique](#projet-complet-:-montage-physique)
+- [sections du site](#sections-du-site)
+- [informations sur le montage physique](#informations-sur-le-montage-physique)
+- [informations générales](#informations-generales)
 
 ### INTRODUCTION
 Ce projet est né d'un problème de la vie courante : l'entretien des plantes domestiques. Il s'agit donc avec le projet Derrick d'automatiser l'entretien des plantes domestiques notamment à l'aide de différents capteurs et d'une interface web pour visualiser les données qu'ils envoient. 
@@ -30,7 +31,7 @@ Ce projet est né d'un problème de la vie courante : l'entretien des plantes do
 4) Météo : Permet d'accéder à diverses informations météorologiques pour un lieu donné.
 5) Chatbot : Permet d'interagir avec un chatbot et notamment d'obtenir des renseignements sur l'entretien de certaines plantes comme le basilic ou le cactus.
 
-### PROJET COMPLET : MONTAGE PHYSIQUE
+### INFORMATIONS SUR LE MONTAGE PHYSIQUE
 
 Il est impossible de lancer la version complète du projet (branche "montage") sans avoir le montage physique. Celui-ci permet de fournir au serveur web les données affichées à l'écran (qui ne sont pas aléatoires, contrairement à la version test), et permet d'arroser la plante à une certaine fréquence ou sur un clic de l'utilisateur. Cette branche est en cours de développement.
 
