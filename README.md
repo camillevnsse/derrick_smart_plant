@@ -30,4 +30,4 @@ facilitation de l'entretien des plantes domestiques
 
 ### PROJET COMPLET : MONTAGE PHYSIQUE
 
-- il est impossible de lancer la version complète du projet (branche "montage") sans avoir le montage physique. Celui-ci permet de fournir au serveur web les données affichées à l'écran (qui ne sont pas aléatoires, contrairement à la version test), et permet d'arroser la plante à une certaine fréquence ou sur un clic de l'utilisateur.
+il est impossible de lancer la version complète du projet (branche "montage") sans avoir le montage physique. Celui-ci permet de fournir au serveur web les données affichées à l'écran (qui ne sont pas aléatoires, contrairement à la version test), et permet d'arroser la plante à une certaine fréquence ou sur un clic de l'utilisateur.
