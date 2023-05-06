@@ -1,3 +1,4 @@
+# gestion de la base de données, qui sert à stocker les données envoyées par les capteurs
 from flask_sqlalchemy import SQLAlchemy
 from random import random
 from main import db
