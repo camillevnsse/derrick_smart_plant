@@ -1,3 +1,4 @@
+# envoie une notification au téléphone portable
 import json
 
 from pushbullet import Pushbullet
