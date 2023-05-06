@@ -18,8 +18,9 @@
 
             <div id="left">
                 {% if data %}
+                <h2 class="font-semibold">{{ data.name }}</h2>
                     <p id="temp">{{ data.temp2m | round(2) }}°</p>
-                    <h2>{{ data.name }}</h2>
+                    
                     <figure id="logo-weather">
                     
                         <img src="http://openweathermap.org/img/wn/{{ data.correspondance[1] }}d@4x.png" alt="weather icon">
@@ -126,12 +127,19 @@
                 
                 {% if data %}
              
-                <br>
-                <h3>Détails:</h3>
+                <br class="pt-10">
+                
                 <hr>
+                    <br>
                 <p class="weather-data-item">Température ressentie: <span class="weather-data-value">{{ data.temp_ressentie }} °C</span></p>
+                <hr>
+                <br>
                 <p class="weather-data-item">Humidité: <span class="weather-data-value">{{ data.rh2m}} %</span>
+                <hr>
+                <br>
                 <p class="weather-data-item">Vent: <span class="weather-data-value">{{ data.wind10m}} Km/h</span>
+               
+
                 </p>
                 <hr>
              
