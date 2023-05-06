@@ -1,5 +1,4 @@
-# envoie une notification au téléphone portable lorsque la plante est arrosée
-
+# envoyer une notification au téléphone lorsque la plante est arrosée
 import json
 
 from pushbullet import Pushbullet
