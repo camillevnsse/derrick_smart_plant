@@ -6,20 +6,20 @@
 - [lancement du projet](#lancement-du-projet)
 
 ### INTRODUCTION
-facilitation de l'entretien des plantes domestiques 
+Ce projet est né d'un problème de la vie courante : l'entretien des plantes domestiques. Il s'agit donc avec le projet Derrick d'automatiser l'entretien des plantes domestiques notamment à l'aide de différents capteurs et d'une interface web pour visualiser les données qu'ils envoient. 
 
 ### PRINCIPE
-- visualisation en temps réel de données telles que la température ambiante ou l'humidité du sol.
-- l'application permet d'interagir avec la plante en automatisant l'arrosage à une fréquence donnée ou bien en l'arrosant manuellement à distance
-- il est également possible de converser avec un chatbot pour obtenir des informations sur l'entretien de plantes
+- Visualisation en temps réel de données telles que la température ambiante ou l'humidité du sol.
+- L'application permet d'interagir avec la plante en automatisant l'arrosage à une fréquence donnée ou bien en l'arrosant manuellement à distance
+- Il est également possible de converser avec un chatbot pour obtenir notamment des informations sur l'entretien de plantes
 
 ### LANCEMENT DE LA PARTIE SERVEUR DU PROJET EN VERSION TEST
-- télécharger les fichiers de la branche "main"
-- le fichier (requirements.txt) contient tous les modules nécessaires au lancement du projet. Vous pouvez les installer comme suit :
+- Télécharger les fichiers de la branche "main"
+- Le fichier (requirements.txt) contient tous les modules nécessaires au lancement du projet. Vous pouvez les installer comme suit :
   - sous windows, ouvrir l'invite de commandes et naviguer vers le dossier du projet à l'aide de la commande "cd [nom du dossier]" puis entrer la commande "pip install -r requirements.txt"
-- depuis le dossier source, lancer en parallèle les fichiers [run.py](run.py) et [test_client.py](test_client.py)
-- dans le navigateur, entrer l'adresse suivante : "http://127.0.0.1:5000". Vous avez maintenant accès au serveur web du projet, qui tourne sur le port 5000.
-  - dans cette version de test, vous avez accès uniquement à la version test du projet, avec des données générées aléatoirement.
+- Depuis le dossier source, lancer en parallèle les fichiers [run.py](run.py) et [test_client.py](test_client.py)
+- Dans le navigateur, entrer l'adresse suivante : "http://127.0.0.1:5000". Vous avez maintenant accès au serveur web du projet, qui tourne sur le port 5000.
+  - Dans cette version de test, vous avez accès uniquement à la version test du projet, avec des données générées aléatoirement.
 
 ### SECTIONS DU SERVEUR WEB
 1) Accueil : affiche les données de température, d'humidité du sol et de niveau d'eau dans le réservoir en temps réel.
@@ -30,4 +30,16 @@ facilitation de l'entretien des plantes domestiques
 
 ### PROJET COMPLET : MONTAGE PHYSIQUE
 
-il est impossible de lancer la version complète du projet (branche "montage") sans avoir le montage physique. Celui-ci permet de fournir au serveur web les données affichées à l'écran (qui ne sont pas aléatoires, contrairement à la version test), et permet d'arroser la plante à une certaine fréquence ou sur un clic de l'utilisateur.
+Il est impossible de lancer la version complète du projet (branche "montage") sans avoir le montage physique. Celui-ci permet de fournir au serveur web les données affichées à l'écran (qui ne sont pas aléatoires, contrairement à la version test), et permet d'arroser la plante à une certaine fréquence ou sur un clic de l'utilisateur. Cette branche est en cours de développement.
+
+### INFORMATIONS GENERALES
+#### langages et frameworks utilisés
+- Pour le serveur web : code en Python, HTML, CSS, JavaScript avec le framework Tailwind pour la mise en forme et le framwork Flask pour créer une application web
+- Pour le montage physique : programmation en MicroPython avec le firmware MicroPython
+
+#### Hardware - montage physique
+- **ESP8266** : circuit intégré à microcontrôleur avec connexion Wi-Fi. Permet de communiquer avec les différents composants du système à distance
+- **Pompe à eau submersible** : permet l'arrosage de la plante.
+- **Relais** : permet d'actionner la pompe.
+- **Multiplexeur** : circuit logique combinatoire conçu pour commuter l'une de plusieurs lignes d'entrée sur une seule ligne de sortie commune. Permet d'avoir plusieurs entrées analogiques pour les capteurs car il n'y a pas assez de ports analogiques sur l'ESP8266.
+- **capteur d'humidité sol** : mesure l'humidité du sol pour savoir quand arroser la plante. Agit comme une résistance variable qui varie avec l'humidité du sol.
