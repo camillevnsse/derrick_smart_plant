@@ -3,7 +3,7 @@ from nltk.chat.util import Chat, reflections
 pairs = [
     [
         r"(.*)Derrick(.*)",
-        ["C'est bien moi ! Quel est votre nom ?", "A votre service ! Comment puis-je vous aider ?"]
+        ["super ! comment puis-je vous être utile ?", "A votre service ! Je me porte à merveille, comment puis-je vous aider ?"]
     ],
     [
         r"(.*)(nom est|m'appelle) (.*)",
@@ -30,7 +30,7 @@ pairs = [
         ["Je vais bien\nEt vous ?", "ça va super et vous?"]
     ],
     [
-        r"désolée",
+        r"désolée|désolé|je m'excuse|excuse-moi",
         ["Pas de souci", "Pas de problème", "ne vous en faites pas ce n'est pas grave"]
     ],
     [
@@ -74,7 +74,10 @@ pairs = [
         r"quand arroser (.*) (plante en pot|plante d'intéreieur|plante verte)",
         ["La fréquence d’arrosage dépend de la saison (on arrose évidemment plus en été qu’en hiver), de la météo, mais aussi de la taille du pot et surtout de la plante à arroser. Tous les végétaux n’ont pas les mêmes besoins, il faut donc adapter les arrosages à ces derniers. Certaines plantes nécessitent un substrat constamment frais sous peine de voir les feuilles prendre une mine plombée et s’affaisser. D’autres, comme les plantes méditerranéennes et la majorité des aromatiques, supportent mal les excès d’eau et apprécient un bon drainage du terreau. On attend que le terreau sèche un peu en surface entre deux arrosages."]
     ],
-
+    [
+        r"(.*)(comment|quand)(.*)(arroser|arrose|entretenir|entretient)(.*)basilic",
+        ["Afin qu’il bénéficie de la chaleur, plantez-le entre les mois d’avril et septembre. Placez-le dans un endroit lumineux et mi-ensoleillé, sur le balcon ou sur les bords d’une fenêtre par exemple. Le basilic affectionne une terre de plantation légère et bien drainée. Fertilisez également le sol avec du compost ou de l’engrais pour plantes aromatiques, de mai à août. Comment réussir son compost ? Nos réponses. Un mois après la plantation, pensez à tailler les premières feuilles afin d’optimiser la repousse. L’opération se fait à l’aide de ciseaux. Si vous avez acheté un basilic en pot, veillez à le rempoter immédiatement après l’achat, dans un pot plus adapté. Placez une couche de billes d’argile au fond du nouveau pot avant d’y disposer le terreau, puis arrosez abondamment. Arrosez la plante quotidiennement en période sèche, mais espacez les arrosages à une fois par semaine en période fraîche. Au printemps et en automne, optez pour un arrosage matinal. En été, arrosez en soirée afin de limiter l’évaporation. L’arrosage doit se faire en pluie fine, idéalement avec un arrosoir à bec."]
+    ],
     [
         r"(.*)(comment|quand)(.*)(arroser|arrose|entretenir|entretient)(.*)cactus",
         ["Un cactus n’a pas besoin d’être arrosé régulièrement, même si lorsqu’il fait chaud, les apports en eau sont plus fréquents. Observez le substrat pour savoir si oui ou non votre cactus a besoin d’eau. Si la terre est sèche, place à l’arrosoir ! N’hésitez pas à hydrater abondamment votre plante, mais prenez garde à ne pas laisser l’eau stagner dans la soucoupe. Cela pourrait faire mourir prématurément votre cactus. Ne mouillez pas le feuillage au moment de l’arrosage, mais vaporisez de temps en temps de l’eau sur le corps du cactus pour l’hydrater au maximum."]
@@ -100,21 +103,23 @@ pairs = [
         ["Pas de souci ! Puis-je vous être utile pour autre chose ?", "Pas de problème, avez-vous d'autres questions ?"]
     ],
     [
-        r"(.*)",
-        ["Je ne suis pas sûr d'avoir bien compris, pouvez-vous reformuler votre question ?", "Excusez-moi, je n'ai pas compris. Réessayez en utilisant d'autres termes ?"]
+        r"non",
+        ["ok !"]
     ],
     [
-        r"quit",
+        r"quit|au revoir|à plus",
         ["Au revoir, à bientôt !", "C'était super de vous parler, à bientôt!"]
 
     ],
+    [
+        r"(.*)",
+        ["Je ne suis pas sûr d'avoir bien compris, pouvez-vous reformuler votre question ?", "Excusez-moi, je n'ai pas compris. Réessayez en utilisant d'autres termes ?"]
+    ]
 ]
 
 
 def get_response(msg):
-    print("Bonjour, je suis Derrick ! Ecrivez en français minuscule s'il vous plaît")  # default message at the start
     chat = Chat(pairs, reflections)
-    
     return chat.respond(msg)
 
 
