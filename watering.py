@@ -1,4 +1,4 @@
-# fichier provisoire en attendant d'avoir mis en place le dispositif d'arrosage automatique
+# envoie une notification au téléphone portable via Pushbullet lorsque la plante est arrosée
 
 import json
 
