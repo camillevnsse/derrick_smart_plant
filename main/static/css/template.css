@@ -42,19 +42,18 @@ body {
     align-items:center;
     justify-content:center;
     height:100vh;
+    
 }
 
 #contents {
-    /* position:relative;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%); */
+   
     width: 70%;
     background: #acbfff;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     text-align: center;
     border-radius: 20px;
+    
     
 }
 
@@ -75,8 +74,9 @@ body {
 }
 
 #right {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(109, 70, 145, 0.8);
     width: 40%;
+    background-image: url("https://odysseedelaterre.fr/wp-content/uploads/2021/09/differents-types-nuages-voilent-ciel.jpg");
     border-radius: 0 20px 20px 0;
     padding-top: 80px;
 }
