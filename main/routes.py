@@ -3,7 +3,6 @@ from flask import render_template, request, jsonify
 from main import app, socketio
 import main.db_test2 as dbt
 from main.db_test2 import add_data, reset_db
-from main.watering import WateringApi
 from main.chatbot_test2 import get_response
 from threading import Lock
 from datetime import datetime
@@ -88,7 +87,7 @@ def settings():
         freq = request.form['water_freq_value']
         # TODO: remplacer par l'adresse de l'ESP8266 (fait dans la branche "montage")
         # requests.post('http://127.0.0.1:5001/watering', json=freq)
-
+        print(freq)
     return render_template("settings.html")
 
 
@@ -110,6 +109,6 @@ def store_data():
 
 
 @app.route("/water")
-def test_notif():
-    WateringApi.water()
+def water():
+    from watering import WateringApi
     return json.dumps({"status": 200, "notification_status": "correct"})
