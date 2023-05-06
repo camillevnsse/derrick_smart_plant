@@ -1,3 +1,5 @@
+# récupérer les données météorologiques
+
 from flask import render_template, request, send_file, make_response
 from main import app, socketio
 import requests as req
