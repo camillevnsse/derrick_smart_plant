@@ -1,3 +1,5 @@
+# version de test : simule l'envoi de données par les capteurs.
+
 import json
 from flask import Flask, render_template, request
 from random import random
@@ -8,10 +10,6 @@ from time import sleep
 import requests
 
 while True:
-    print('ok')
-    # valeurs temporairement aléatoires : à fortiori ce sera les valeurs envoyées par les sensors
-
-    # TODO: faire requête post vers /add_data pour envoyer données des sensors
     hum_value = round(random() * 100, 1)
     temp_value = round(random() * 100, 1)
     water_lvl_value = round(random() * 100, 1)
