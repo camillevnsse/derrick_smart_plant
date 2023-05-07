@@ -44,7 +44,14 @@
                     <form action="http://127.0.0.1:5000/settings" method="POST" target="hidden-iframe">
                         <label for="water_freq_value">Entrez une valeur</label>
                         <input type="number" id="water_freq_value" name="water_freq_value">
-                        <button type="submit" class="bg-blue-400/50 hover:bg-blue-400/40 text-blue-600 font-bold m-5 py-2 px-4 rounded-full">Envoyer</button>
+                        <button id="sendbutton" type="submit" onclick="changeColor()" class="bg-blue-400/50 hover:bg-blue-400/40 text-blue-600 font-bold m-5 py-2 px-4 rounded-full">Envoyer</button>
+                        <script>
+                            function changeColor(){
+                                document.getElementById("sendbutton").innerHTML = "Envoyé !";
+                                document.getElementById("sendbutton").style.color = "#1eb634";
+                                document.getElementById("sendbutton").style.backgroundColor = "#81d78c"
+                            }
+                        </script>
                     </form>
                     <iframe name="hidden-iframe" style="display:none;"></iframe>
                 </div>
@@ -69,6 +76,9 @@
                         const resp = await fetch(`${document.location.protocol }//${document.location.host}/water`);
                         if (!resp.ok) throw "Request error";
                         console.log("finished python script");
+                        document.getElementById("script").innerHTML = "Plante arrosée !";
+                        document.getElementById("script").style.color = "#1eb634";
+                        document.getElementById("script").style.backgroundColor = "#81d78c"
                         }
                     </script>
                 </div>
