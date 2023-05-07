@@ -9,15 +9,34 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
-    <body>
+    <body class="pr-24">
         {% extends "template.html" %}
         {% block content %}
         <div class="pt-16 font-bold text-5xl ">Paramètres</div>
-        <img class =" justify-items-stretch xl:float-right pt-10 bg-transparent drop-shadow-xl" id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">
+        <!--<img class =" justify-items-stretch xl:float-right pt-10 bg-transparent drop-shadow-xl" id="dp_illustration" src="{{ url_for('static', filename='derrick_plant.jpg') }}" alt="illustration plante">-->
 
-        <!--
+        
         <p class="pt-10 text-center font-extrabold text-xl text-gray-500">Informations sur l'arrosage</p>
 
+        <div class="my-10 rounded-md bg-green-300/50 drop-shadow-2xl">
+            <div class="w-full h-40 relative">
+                <img src="https://www.lacueillettedeshalles.fr/pub/produits/herbes_fraiches/basilic-vrac.jpeg" class="object-none object-left absolute w-full h-full">
+                <p class="absolute w-full h-full pl-8 pt-14 text-gray-200 font-bold text-4xl drop-shadow-md">Entretien du basilic</p>
+            </div>
+            <div class="p-5">
+                <p>Le basilic est une plante aromatique populaire qui nécessite des soins réguliers pour croître et produire de belles feuilles parfumées. Voici quelques conseils pour entretenir votre basilic :</p>
+                <ul role="list" class="marker:text-green-500/75 list-disc pl-8 pt-5 space-y-2">
+                    <li>Lumière : Placez votre basilic dans un endroit ensoleillé, idéalement avec au moins six heures de lumière directe par jour.</li>
+                    <li>Eau : Arrosez régulièrement votre basilic pour garder le sol humide. Évitez de laisser le sol sécher complètement entre les arrosages, mais évitez également d'arroser trop fréquemment, car cela peut provoquer la pourriture des racines.</li>
+                    <li>Fertilisation : Ajoutez un engrais organique une fois par mois pour aider votre basilic à produire de nouvelles feuilles.</li>
+                    <li>Taille : Taillez régulièrement les extrémités des tiges pour encourager la croissance et empêcher la plante de devenir trop grande.</li>
+                    <li>Récolte : Cueillez les feuilles de basilic régulièrement pour stimuler la production de nouvelles feuilles et éviter que la plante ne devienne trop dense.</li>
+                </ul>
+            </div>
+        </div>
+        
+
+        <!--
         <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
 
             <div class="bg-green-200/90 rounded-md drop-shadow-2xl">
@@ -34,7 +53,7 @@
         -->
 
 
-        <p class="pt-10 text-center font-extrabold text-xl text-gray-500">Gestion de l'arrosage</p>
+        <p class="pt-5 text-center font-extrabold text-xl text-gray-500">Gestion de l'arrosage</p>
 
         <div class="py-10 grid-cols-2 py-30 pr-2 grid md:grid-rows-1 gap-10">
 
@@ -60,7 +79,7 @@
             <div class="bg-blue-300/50 rounded-md drop-shadow-2xl">
                 <p class="m-5 text-2xl 2xl:text-3xl font-bold">Arrosage manuel</p>
                 <div class="text-center">
-                    <button id ='script' name="scriptbutton" value=" Run Script " onclick="goPython()" class="bg-blue-400/50 hover:bg-blue-400/40 text-blue-600 text-2xl font-semibold m-5 py-5 px-8 rounded-3xl">Arroser la plante</button>
+                    <button id ='script' name="scriptbutton" value=" Run Script " onclick="goPython()" class="bg-blue-400/50 hover:bg-blue-400/40 text-blue-600 text-2xl font-semibold mt-5 py-5 px-8 rounded-3xl">Arroser la plante</button>
                     <!--<script>
                         function goPython(){
                             $.ajax({
