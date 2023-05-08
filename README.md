@@ -26,7 +26,7 @@ Ce projet est né d'un problème de la vie courante : l'entretien des plantes do
 
 ### SECTIONS DU SITE
 1) Accueil : affiche les données de température, d'humidité du sol et de niveau d'eau dans le réservoir en temps réel.
-2) Paramètres : permet de modifier la fréquence d'envoi des données des capteurs ainsi que la fréquence d'arrosage automatique. Permet également d'arroser manuellement la plante.
+2) Paramètres : permet de modifier la fréquence d'envoi des données des capteurs ainsi que la fréquence d'arrosage automatique. Permet également d'arroser manuellement la plante. ⚠️ Dans la version avec montage, cette section a été renommée "arrosage".
 3) Statistiques : visualise et met à jour en temps réel les données reçues par les capteurs dans des graphiques différents. Seulement les 10 dernières données sont affichées à l'écran pour plus de lisibilité.
 4) Météo : Permet d'accéder à diverses informations météorologiques pour un lieu donné.
 5) Chatbot : Permet d'interagir avec un chatbot et notamment d'obtenir des renseignements sur l'entretien de certaines plantes comme le basilic ou le cactus.
