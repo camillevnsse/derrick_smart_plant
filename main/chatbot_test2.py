@@ -1,4 +1,3 @@
-# chatbot : permet d'associer des réponses aux requêtes utilisateur
 from nltk.chat.util import Chat, reflections
 
 pairs = [
@@ -19,7 +18,7 @@ pairs = [
         ["Je suis un chatbot, et je suis là pour vous aider. Posez-moi une question, je ferai de mon mieux pour répondre !"]
     ],
     [
-        r"(bien|super|(.*)) et toi ?",
+        r"(.*)(bien|super|(.*)) et toi ?",
         ["Je vais bien, merci !"]
     ],
     [
@@ -76,15 +75,15 @@ pairs = [
         ["La fréquence d’arrosage dépend de la saison (on arrose évidemment plus en été qu’en hiver), de la météo, mais aussi de la taille du pot et surtout de la plante à arroser. Tous les végétaux n’ont pas les mêmes besoins, il faut donc adapter les arrosages à ces derniers. Certaines plantes nécessitent un substrat constamment frais sous peine de voir les feuilles prendre une mine plombée et s’affaisser. D’autres, comme les plantes méditerranéennes et la majorité des aromatiques, supportent mal les excès d’eau et apprécient un bon drainage du terreau. On attend que le terreau sèche un peu en surface entre deux arrosages."]
     ],
     [
-        r"(.*)(comment|quand)(.*)(arroser|arrose|entretenir|entretient)(.*)basilic",
+        r"(.*)(arroser|arrose|entretenir|entretient|l'entretien)(.*)basilic",
         ["Afin qu’il bénéficie de la chaleur, plantez-le entre les mois d’avril et septembre. Placez-le dans un endroit lumineux et mi-ensoleillé, sur le balcon ou sur les bords d’une fenêtre par exemple. Le basilic affectionne une terre de plantation légère et bien drainée. Fertilisez également le sol avec du compost ou de l’engrais pour plantes aromatiques, de mai à août. Comment réussir son compost ? Nos réponses. Un mois après la plantation, pensez à tailler les premières feuilles afin d’optimiser la repousse. L’opération se fait à l’aide de ciseaux. Si vous avez acheté un basilic en pot, veillez à le rempoter immédiatement après l’achat, dans un pot plus adapté. Placez une couche de billes d’argile au fond du nouveau pot avant d’y disposer le terreau, puis arrosez abondamment. Arrosez la plante quotidiennement en période sèche, mais espacez les arrosages à une fois par semaine en période fraîche. Au printemps et en automne, optez pour un arrosage matinal. En été, arrosez en soirée afin de limiter l’évaporation. L’arrosage doit se faire en pluie fine, idéalement avec un arrosoir à bec."]
     ],
     [
-        r"(.*)(comment|quand)(.*)(arroser|arrose|entretenir|entretient)(.*)cactus",
+        r"(.*)(arroser|arrose|entretenir|entretient|l'entretien)(.*)cactus",
         ["Un cactus n’a pas besoin d’être arrosé régulièrement, même si lorsqu’il fait chaud, les apports en eau sont plus fréquents. Observez le substrat pour savoir si oui ou non votre cactus a besoin d’eau. Si la terre est sèche, place à l’arrosoir ! N’hésitez pas à hydrater abondamment votre plante, mais prenez garde à ne pas laisser l’eau stagner dans la soucoupe. Cela pourrait faire mourir prématurément votre cactus. Ne mouillez pas le feuillage au moment de l’arrosage, mais vaporisez de temps en temps de l’eau sur le corps du cactus pour l’hydrater au maximum."]
     ],
     [
-        r"(.*)(comment|quand)(.*)(arroser|arrose|entretenir|entretient)(.*)(plante verte|plante en pot|plante d'intérieur)",
+        r"(.*)(arroser|arrose|entretenir|entretien|l'entretien)(.*)(plante verte|plante en pot|plante d'intérieur)",
         ["Une plante verte a besoin d'être arrosée régulièrement, mais pas trop généreusement. Arrosez donc votre plante doucement avec de l'eau à température ambiante au moins une fois par jour"]
     ],
     [
@@ -94,10 +93,6 @@ pairs = [
     [
         r"(.*)santé(.*)",
         ["Je suis un programme informatique, donc je suis toujours en bonne santé", ]
-    ],
-    [
-        r"(quel|quelle) (.*) (acteur|star)",
-        ["Tom Cruise", "Tom Holland", "Moi."]
     ],
     [
         r"(.*)merci(.*)",
