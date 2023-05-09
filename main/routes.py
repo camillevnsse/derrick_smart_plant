@@ -9,7 +9,10 @@ from datetime import datetime
 from random import random
 import requests
 from main import meteo
+from apscheduler.schedulers.background import BackgroundScheduler
+from watering import WateringApi
 
+freq = 86400
 
 thread = None
 thread_lock = Lock()
@@ -83,10 +86,13 @@ def disconnect():
 # paramètres : régler la fréquence d'arrosage et fréquence d'envoi des données
 @app.route("/settings", methods=["POST", "GET"])
 def settings():
+    global freq
     if request.method == "POST":
         freq = request.form['water_freq_value']
-        # TODO: remplacer par l'adresse de l'ESP8266 (fait dans la branche "montage")
-        # requests.post('http://127.0.0.1:5001/watering', json=freq)
+        try:
+            scheduler.reschedule_job("water_task", trigger='interval', seconds=int(freq))
+        except Exception as err:
+            print(err)
         print(freq)
     return render_template("settings.html")
 
@@ -98,17 +104,21 @@ def statistics():
 
 @app.route("/store_data", methods=["POST"])
 def store_data():
-    # TODO: stocker dans la db les valeurs reçues
     sensor_data = request.json
     print(sensor_data)
-    add_data("humidity", sensor_data["humidity"], "test hum")
-    add_data("temperature", sensor_data["temperature"], "test temp")
-    add_data("water_lvl", sensor_data["water_lvl"], "test wat")
+    add_data("humidity", sensor_data["humidity"], "hum")
+    add_data("temperature", sensor_data["temperature"], "temp")
+    add_data("water_lvl", sensor_data["water_lvl"], "wat")
 
     return json.dumps({"status": 200, "notification_status": "correct"})
 
 
 @app.route("/water")
 def water():
-    from watering import WateringApi
+    WateringApi.water()
     return json.dumps({"status": 200, "notification_status": "correct"})
+
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=water, trigger='interval', seconds=freq, id="water_task")
+scheduler.start()
