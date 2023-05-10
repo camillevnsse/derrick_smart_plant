@@ -3,13 +3,14 @@
 <html lang="fr" >
     <head>
         <meta charset="utf-8">
-        <title>Météo</title>
+        <title>météo</title>
         <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <link rel="stylesheet" href="static/css/template.css">
     </head>
     <body>
         {% extends "template.html" %}
         {% block content %}
+<div class="pt-16 font-bold text-5xl ">Météo</div>
 <div id="contents">
         
         {% set bgimage = 'clear sky' %}
@@ -17,7 +18,9 @@
         <div id="results" style="background-image: url({{url_for('static', filename='images/'+bgimage+'.jpg')}})">
 
             <div id="left">
+
                 {% if data %}
+
                 <h2 class="font-semibold text-white">{{ data.name }}</h2>
                     <p id="temp" class="text-white">{{ data.temp2m | round(2) }}°</p>
                     
@@ -34,7 +37,7 @@
             </div>
 
             <div id="right" class="bg-blue-300/50">
-                <h1 class="text-white">Météo</h1>
+   
 
                     <form action="" id="villeform">
                         <input  class="text-stone-700" name="city" id="city" type="text" value="{{ request.form['city'] }}" placeholder="Ville">
@@ -42,7 +45,6 @@
                             <div class="text-stone-700" id="suggestions"></div>
                         </div>
                     </form>
-                    
                     
                     <style>
                     #suggestioncontainer{
@@ -55,22 +57,25 @@
                     <script>
                         
                         let formelem = document.getElementById("villeform");
+
                         formelem.addEventListener("submit", (e)=>{
                             e.preventDefault();
                             e.stopPropagation();
+
                             let city = document.getElementById("city");
                             let val = city.value;
                             let searchval = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                             searchval =  val.toUpperCase()
+
                             const result = datacity.filter( ville => ville[0].trim() == searchval.trim());
                             console.log(result)
+
                             if (result.length == 1){
                                 let prop = result[0];
                                 let lien = "?insee="+prop[1];
-                                //on redirige
+                                // je redirige
                                 window.location.search = lien;
                             };
-
                         })
                         
                         
@@ -78,41 +83,43 @@
                         let datacity;
 
                         function main(){
-                            
+
                             let city = document.getElementById("city");
+
                             function citychanged(e) {
                                 let val = city.value;
-                                
                                 prop(val)
                             }
+
                             city.addEventListener("input",citychanged);
 
                             function prop(val){
+
                                 let searchval = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                                 searchval =  val.toUpperCase().trim()
                                 
                                 document.getElementById("suggestions").innerHTML="";
+
                                 if (searchval !== ""){
+
                                     //const result = datacity.filter( ville => ville[0].includes(searchval)).sort(ville => !ville[0].startsWith(searchval));
                                     const result = datacity.filter( ville => ville[0].startsWith(searchval));
-                                    result.sort((ville1, ville2) => ville1[0].length<ville2[0].length ? -1 : 1); // -1 if len(ville1)<len(ville2) else 1
+
+                                    result.sort((ville1, ville2) => ville1[0].length<ville2[0].length ? -1 : 1);
+                                     // -1 if len(ville1)<len(ville2) else 1
                                     const propositions = result.slice(0,5); 
                                     
                                     for (let i = 0; i < propositions.length; i++) {
                                         const prop = propositions[i];
+
                                         let suggestionsbox = document.createElement("div");
                                         let lien = "?insee="+prop[1];
+
                                         suggestionsbox.innerHTML = "<a href='"+lien+"'>"+prop[2]+"</a>";
                                         document.getElementById("suggestions").appendChild(suggestionsbox);
                                     }
-                                }
-                                
+                                } 
                             }
-                            
-
-                            
-
-
                         }
 
                         fetch("/cities")
