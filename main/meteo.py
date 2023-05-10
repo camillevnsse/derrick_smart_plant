@@ -46,14 +46,12 @@ def get_weather():
             data["temp_ressentie"] = ""
         
 
-        data1 = {'coord': {'lon': -0.1257, 'lat': 51.5085},
-                'weather': [{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}],
-                'base': 'stations',
-                'main': {'temp': 14.29, 'feels_like': 13.16, 'temp_min': 12.25, 'temp_max': 15.86, 'pressure': 1015,
-                         'humidity': 53}, 'visibility': 10000, 'wind': {'speed': 4.63, 'deg': 280},
-                'clouds': {'all': 100}, 'dt': 1664128421,
-                'sys': {'type': 2, 'id': 2075535, 'country': 'GB', 'sunrise': 1664085064, 'sunset': 1664128404},
-                'timezone': 3600, 'id': 2643743, 'name': code_ville, 'cod': 200}
+        data1 = {'city': {'insee': '78117', 'cp': 78530, 'name': 'Buc', 'latitude': 48.7718, 'longitude': 2.1239, 'altitude': 149},
+                'update': '2023-05-10T12:20:02+02:00', 'forecast':
+                [{'insee': '78117', 'cp': 78530, 'latitude': 48.7718, 'longitude': 2.1239, 'datetime': '2023-05-10T12:00:00+0200', 'temp2m': 13, 'rh2m': 73, 'wind10m': 14, 'gust10m': 38, 'dirwind10m': 266, 'rr10': 0, 'rr1': 0, 'probarain': 60, 'weather': 10, 'probafrost': 0, 'probafog': 0, 'probawind70': 0, 'probawind100': 0, 'tsoil1': 14, 'tsoil2': 12, 'gustx': 38, 'iso0': -99},
+                {'insee': '78117', 'cp': 78530, 'latitude': 48.7718, 'longitude': 2.1239, 'datetime': '2023-05-10T15:00:00+0200', 'temp2m': 15, 'rh2m': 63, 'wind10m': 14, 'gust10m': 38, 'dirwind10m': 264, 'rr10': 0.8, 'rr1': 1.6, 'probarain': 80, 'weather': 44, 'probafrost': 0, 'probafog': 0, 'probawind70': 0, 'probawind100': 0, 'tsoil1': 17, 'tsoil2': 13, 'gustx': 47, 'iso0': -99},
+                {'insee': '78117', 'cp': 78530, 'latitude': 48.7718, 'longitude': 2.1239, 'datetime': '2023-05-10T18:00:00+0200', 'temp2m': 15, 'rh2m': 69, 'wind10m': 17, 'gust10m': 47, 'dirwind10m': 292, 'rr10': 4, 'rr1': 9, 'probarain': 90, 'weather': 212, 'probafrost': 0, 'probafog': 0, 'probawind70': 0, 'probawind100': 0, 'tsoil1': 17, 'tsoil2': 13, 'gustx': 57, 'iso0': -99},
+                {'insee': '78117', 'cp': 78530, 'latitude': 48.7718, 'longitude': 2.1239, 'datetime': '2023-05-10T21:00:00+0200', 'temp2m': 13, 'rh2m': 79, 'wind10m': 11, 'gust10m': 31, 'dirwind10m': 286, 'rr10': 1.7000000000000002, 'rr1': 3.5, 'probarain': 70, 'weather': 40, 'probafrost': 0, 'probafog': 0, 'probawind70': 0, 'probawind100': 0, 'tsoil1': 15, 'tsoil2': 13, 'gustx': 34, 'iso0': -99}]}
 
         return render_template("weather.html", city=code_ville, data=data)
     return render_template("weather.html")
@@ -61,3 +59,4 @@ def get_weather():
 @app.route("/cities")
 def donner_villes():
     return send_file(os.path.join(os.getcwd(), "data/donnees_villes_france.json"), mimetype="application/json")
+
