@@ -1,5 +1,3 @@
-# récupérer les données météorologiques
-
 from flask import render_template, request, send_file, make_response
 from main import app, socketio
 import requests as req
@@ -13,7 +11,7 @@ TOKEN_API_METEO=os.getenv("TOKEN_API_METEO")
 with open("data/correspondances_codes.json","rb") as file:
     correspondances_api = json.loads(file.read().decode("utf-8"))
 
-def refresh(insee):
+def refresh(insee) -> dict:
     Resp = req.get(f'https://api.meteo-concept.com/api/forecast/nextHours?token={TOKEN_API_METEO}&insee={insee}')
     Data = json.loads(Resp.text)
     return Data
@@ -25,16 +23,19 @@ def correspondance(code) -> list:
 def get_weather():
     code_ville = request.args.get("insee", False)
     if code_ville:
-        #recuperons la reponse de l'api
+        #recupere la reponse de l'api
         meteo = refresh(code_ville)
 
-        #on récupère les previsions
+        #je récupère les previsions
         data = meteo.get("forecast", [])[0]
-        #on ajoute le nom de la ville
+
+        #j' ajoute le nom de la ville
         data["name"] = meteo.get('city', {}).get("name", None)
+
         #ici on ajoute le code d'image
         code_meteo = data["weather"]
         data["correspondance"] = correspondance(code_meteo)
+
         #temperature ressentie selon : https://www.alpiniste.fr/out/pictures/wysiwigpro/kalkulatoren/js/windchill-logic.js
         temp = data["temp2m"]
         if -50 < temp < 50:
